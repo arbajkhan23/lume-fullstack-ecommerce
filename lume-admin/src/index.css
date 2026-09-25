@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { font-family: 'Inter', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #28282c; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #38383d; }
+
+@layer components {
+  .panel {
+    @apply bg-surface border border-border rounded-xl2 shadow-panel;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-black hover:bg-accent-soft;
+  }
+  .btn-ghost {
+    @apply btn bg-surface2 text-white border border-border hover:border-accent;
+  }
+  .btn-danger {
+    @apply btn bg-transparent text-danger border border-danger/40 hover:bg-danger/10;
+  }
+  .input {
+    @apply w-full bg-surface2 border border-border rounded-lg px-3 py-2 text-sm text-white placeholder:text-muted focus:outline-none focus:border-accent transition-colors;
+  }
+  .label {
+    @apply text-xs uppercase tracking-wider text-muted mb-1 block font-medium;
+  }
+  .table-shell {
+    @apply w-full text-sm text-left;
+  }
+  .table-shell th {
+    @apply text-xs uppercase tracking-wider text-muted font-semibold px-4 py-3 border-b border-border;
+  }
+  .table-shell td {
+    @apply px-4 py-3 border-b border-border/60 align-middle;
+  }
+  .table-shell tr:hover td {
+    @apply bg-surface2/60;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+}

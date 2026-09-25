@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMÉ — Considered Objects for Everyday Light</title>
+<meta name="description" content="LUMÉ is a premium home, lighting and lifestyle store — considered objects, honestly made.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="ambient"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="grain"></div>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce-bar" id="announceBar">
+  <div class="container announce-track">
+    <div class="announce-item active">Free shipping on orders over <strong>$75</strong> — every order, every time.</div>
+    <div class="announce-item">Use code <strong>LUME10</strong> for 10% off your first order.</div>
+    <div class="announce-item">New lighting collection just landed — <strong>shop New Arrivals</strong>.</div>
+  </div>
+  <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="lume-nav" id="mainNav">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html" class="brand">LUM<span class="dot">É</span></a>
+    <ul class="nav-links d-none d-lg-flex list-unstyled m-0 align-items-center">
+      <li><a href="shop.html" data-nav="shop.html">Shop</a></li>
+      <li><a href="index.html#categories">Categories</a></li>
+      <li><a href="shop.html?filter=new">New Arrivals</a></li>
+      <li><a href="shop.html?filter=sale">Deals</a></li>
+      <li><a href="about.html" data-nav="about.html">About</a></li>
+      <li><a href="contact.html" data-nav="contact.html">Contact</a></li>
+    </ul>
+    <div class="d-flex align-items-center gap-2">
+      <div class="nav-search d-none d-md-block" id="navSearch"><input type="text" class="nav-search-input" placeholder="Search products…" aria-label="Search products"></div>
+      <button class="icon-btn d-none d-md-flex" id="searchToggleBtn" aria-label="Toggle search"><i class="bi bi-search"></i></button>
+      <button class="icon-btn" id="chatbotToggleBtn" aria-label="Open chatbot"><i class="bi bi-chat-dots"></i></button>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="icon-badge" id="wishCount">0</span></a>
+      <a href="account.html" class="icon-btn d-none d-sm-flex" aria-label="Account"><i class="bi bi-person"></i></a>
+      <a href="cart.html" class="icon-btn" id="navCart" aria-label="Cart"><i class="bi bi-bag"></i><span class="icon-badge" id="cartCount">0</span></a>
+      <button class="icon-btn d-lg-none" aria-label="Open menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header">
+    <span class="brand">LUM<span class="dot">É</span></span>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav-links list-unstyled">
+      <li><a href="shop.html" data-bs-dismiss="offcanvas">Shop</a></li>
+      <li><a href="index.html#categories" data-bs-dismiss="offcanvas">Categories</a></li>
+      <li><a href="shop.html?filter=new" data-bs-dismiss="offcanvas">New Arrivals</a></li>
+      <li><a href="shop.html?filter=sale" data-bs-dismiss="offcanvas">Deals</a></li>
+      <li><a href="about.html" data-bs-dismiss="offcanvas">About</a></li>
+      <li><a href="contact.html" data-bs-dismiss="offcanvas">Contact</a></li>
+      <li><a href="account.html" data-bs-dismiss="offcanvas">Account</a></li>
+    </ul>
+    <div class="nav-search open mt-3"><input type="text" class="nav-search-input" placeholder="Search products…"></div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="eyebrow">Considered Objects</span>
+        <h1 class="mt-3 mb-4">Light your space<br><span class="italic-accent">with intention.</span></h1>
+        <p class="lede">Lighting, decor and everyday objects designed with restraint — honest materials, quiet forms, made to outlast trend cycles.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start">
+          <a href="shop.html?filter=new" class="btn-lume-primary">Shop New Arrivals</a>
+          <a href="#categories" class="btn-lume-ghost">Explore Collections</a>
+        </div>
+        <div class="d-flex hero-stats mt-5 justify-content-center justify-content-lg-start">
+          <div><span class="stat-num">12k+</span><div class="stat-label">Happy Homes</div></div>
+          <div><span class="stat-num">4.9/5</span><div class="stat-label">Average Rating</div></div>
+          <div><span class="stat-num">120+</span><div class="stat-label">Designed Objects</div></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-visual">
+          <div class="hero-badge-top glass-strong"><i class="bi bi-stars text-warning"></i> Editor's Pick</div>
+          <div class="hero-card-main glass"><img id="heroBannerImage" src="https://picsum.photos/seed/lume-hero/900/1100" alt="Featured LUMÉ product"></div>
+          <div class="hero-float-card glass-strong">
+            <div class="d-flex justify-content-between align-items-start">
+              <span class="hf-title" id="heroBannerTitle">Aalto Table Lamp</span>
+              <i class="bi bi-heart" style="color:var(--rose)"></i>
+            </div>
+            <div class="stars mt-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+            <div class="hero-float-price mt-1" id="heroBannerPrice">$128.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ SHOP BY CATEGORIES ============ -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end section-head reveal">
+      <div><span class="eyebrow">Collections</span><h2 class="mt-2 mb-0">Shop by Category</h2></div>
+      <a href="shop.html" class="view-all d-none d-sm-inline">View all categories</a>
+    </div>
+    <div class="row g-3 g-md-4" id="categoryGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PRODUCTS ============ -->
+<section class="section" id="featured">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end section-head reveal">
+      <div><span class="eyebrow">Curated Selection</span><h2 class="mt-2 mb-0">Featured Products</h2></div>
+      <a href="shop.html" class="view-all d-none d-sm-inline">View all products</a>
+    </div>
+    <div class="row g-4" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- ============ NEW ARRIVALS ============ -->
+<section class="section" id="arrivals">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end section-head reveal">
+      <div><span class="eyebrow">Just Landed</span><h2 class="mt-2 mb-0">New Arrivals</h2></div>
+      <a href="shop.html?filter=new" class="view-all d-none d-sm-inline">View all</a>
+    </div>
+    <div class="arrivals-slider">
+      <button class="slider-control prev" id="arrivalsPrev" aria-label="Scroll left"><i class="bi bi-chevron-left"></i></button>
+      <div class="scroll-row" id="arrivalsRow"></div>
+      <button class="slider-control next" id="arrivalsNext" aria-label="Scroll right"><i class="bi bi-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEALS BANNER ============ -->
+<section class="section pt-0" id="deals">
+  <div class="container">
+    <div class="deal-banner glass-strong reveal">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="eyebrow">Limited Time</span>
+          <h2 class="mt-2">Up to <span class="italic-accent">40% off</span> select lighting</h2>
+          <p class="mb-0" style="max-width:460px">Our seasonal edit on floor and table lighting ends soon. Once it's gone, it's gone until next season.</p>
+        </div>
+        <div class="col-lg-5">
+          <div class="d-flex flex-column align-items-center align-items-lg-end gap-3">
+            <div class="countdown" id="countdown">
+              <div class="count-box glass"><span class="num" id="cd-h">00</span><span class="lbl">Hours</span></div>
+              <div class="count-box glass"><span class="num" id="cd-m">00</span><span class="lbl">Mins</span></div>
+              <div class="count-box glass"><span class="num" id="cd-s">00</span><span class="lbl">Secs</span></div>
+            </div>
+            <a href="#trending" class="btn-lume-primary">Shop the Sale</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRENDING WITH FILTERS ============ -->
+<section class="section" id="trending">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Right Now</span>
+      <h2 class="mt-2 mb-3">Trending Products</h2>
+      <div class="filter-pills" id="filterPills">
+        <span class="filter-pill active" data-filter="all">All</span>
+        <span class="filter-pill" data-filter="lighting">Lighting</span>
+        <span class="filter-pill" data-filter="decor">Decor</span>
+        <span class="filter-pill" data-filter="accessories">Accessories</span>
+        <span class="filter-pill" data-filter="fragrance">Fragrance</span>
+      </div>
+    </div>
+    <div class="row g-4" id="trendingGrid"></div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head text-center reveal"><span class="eyebrow">Our Promise</span><h2 class="mt-2">Why Choose LUMÉ</h2></div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-truck"></i></div><h4 class="h6">Free Shipping</h4><p class="mb-0 small">On every order over $75, no fine print.</p></div></div>
+      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-shield-check"></i></div><h4 class="h6">Secure Checkout</h4><p class="mb-0 small">Encrypted payments, every transaction.</p></div></div>
+      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-arrow-repeat"></i></div><h4 class="h6">Easy Returns</h4><p class="mb-0 small">30-day returns, no questions asked.</p></div></div>
+      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-headset"></i></div><h4 class="h6">24/7 Support</h4><p class="mb-0 small">Real people, ready to help anytime.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CUSTOMER REVIEWS ============ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-head text-center reveal"><span class="eyebrow">Testimonials</span><h2 class="mt-2">What Our Customers Say</h2></div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"The lamp is even more beautiful in person. It changed the entire feel of my living room."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=47" alt="Portrait of Amara O."><div><div class="review-name">Amara O.</div><div class="review-role">Jaipur, IN</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+        <p class="review-quote">"Packaging alone felt premium. Shipping was fast and the quality matched the price."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=12" alt="Portrait of Daniel K."><div><div class="review-name">Daniel K.</div><div class="review-role">Austin, US</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"Every piece I've bought looks intentional — nothing feels like filler in my home now."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=32" alt="Portrait of Priya S."><div><div class="review-name">Priya S.</div><div class="review-role">Bengaluru, IN</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"Customer support helped me pick the right size lamp within minutes. Excellent service."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=68" alt="Portrait of Marco L."><div><div class="review-name">Marco L.</div><div class="review-role">Milan, IT</div></div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter-panel glass-strong reveal">
+      <span class="eyebrow">Stay in the Light</span>
+      <h2 class="mt-2">Get 10% off your first order</h2>
+      <p class="mx-auto" style="max-width:420px">Join our list for early access to new arrivals, restocks and considered reads on design.</p>
+      <form class="newsletter-form js-newsletter-form">
+        <input type="email" required placeholder="Enter your email address" aria-label="Email address">
+        <button type="submit" class="btn-lume-primary">Subscribe</button>
+      </form>
+      <div class="newsletter-note">No spam. Unsubscribe anytime.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
+        <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
+        <div class="footer-social mt-3">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="#" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Shop</div>
+        <div class="footer-links">
+          <a href="shop.html?cat=lighting">Lighting</a>
+          <a href="shop.html?cat=decor">Decor</a>
+          <a href="shop.html?cat=fragrance">Fragrance</a>
+          <a href="shop.html?cat=accessories">Accessories</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Customer Care</div>
+        <div class="footer-links">
+          <a href="contact.html">Contact Us</a>
+          <a href="about.html">Shipping Info</a>
+          <a href="cart.html">Returns</a>
+          <a href="about.html">FAQs</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="footer-heading">Visit the Studio</div>
+        <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
+        <p class="small mb-1"><i class="bi bi-envelope me-2"></i>hello@lume-studio.com</p>
+        <p class="small"><i class="bi bi-telephone me-2"></i>+91 98765 43210</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2026 LUMÉ Studio. All rights reserved.</span>
+      <div class="payment-icons"><i class="bi bi-credit-card"></i><i class="bi bi-paypal"></i><i class="bi bi-apple"></i><i class="bi bi-google"></i></div>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top glass-strong" id="toTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+<!-- ============ CHATBOT WIDGET ============ -->
+<div class="chatbot-widget" id="chatbotWidget">
+  <div class="chatbot-header">
+    <span>LUMÉ Assistant</span>
+    <button class="btn-close-chatbot" id="chatbotCloseBtn" aria-label="Close chatbot"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="chatbot-msg bot-msg">
+      <p>Hi! 👋 Welcome to LUMÉ. How can I help you today? I can assist with product recommendations, shipping info, or answer questions about our collection.</p>
+    </div>
+  </div>
+  <div class="chatbot-input-area">
+    <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type your message..." aria-label="Message input">
+    <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/lume-api.js"></script>
+<script>
+function renderHomeProducts(){
+  document.getElementById('categoryGrid').innerHTML = CATEGORIES.map(catCard).join('');
+  document.getElementById('featuredGrid').innerHTML = PRODUCTS.slice(0,8).map(p => `<div class="col-6 col-md-4 col-lg-3">${productCard(p,'reveal')}</div>`).join('');
+  document.getElementById('arrivalsRow').innerHTML = PRODUCTS.filter(p=>p.tag==='new').map(p => productCard(p,'reveal')).join('');
+  document.getElementById('trendingGrid').innerHTML = PRODUCTS.slice(14,22).map(p => `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`).join('');
+}
+renderHomeProducts();
+function onProductsLoaded(){
+  renderHomeProducts();
+}
+document.addEventListener(
+  "lume:categoriesReady",
+  () => {
+    renderHomeProducts();
+  }
+);
+
+async function loadHomeBanners(){
+  if(!window.LumeAPI?.getBanners) return;
+  try{
+    const banner = (await window.LumeAPI.getBanners('hero'))[0];
+    if(!banner) return;
+    const image = document.getElementById('heroBannerImage');
+    const title = document.getElementById('heroBannerTitle');
+    const price = document.getElementById('heroBannerPrice');
+    if(image && banner.image?.url) image.src = banner.image.url;
+    if(title && banner.title) title.textContent = banner.title;
+    if(price && banner.subtitle) price.textContent = banner.subtitle;
+  }catch(error){ console.error('[LUMÉ] Banner loading failed:', error); }
+}
+loadHomeBanners();
+
+document.getElementById('filterPills').addEventListener('click', (e)=>{
+  const pill = e.target.closest('.filter-pill');
+  if(!pill) return;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  pill.classList.add('active');
+  const f = pill.dataset.filter;
+  document.querySelectorAll('#trendingGrid .product-fade').forEach(card=>{
+    card.classList.toggle('product-hide', !(f === 'all' || card.dataset.cat === f));
+  });
+});
+
+(function(){
+  const end = Date.now() + (12*3600 + 34*60)*1000;
+  function tick(){
+    const diff = Math.max(0, end - Date.now());
+    document.getElementById('cd-h').textContent = String(Math.floor(diff/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+const arrivalsRow = document.getElementById('arrivalsRow');
+document.getElementById('arrivalsNext').addEventListener('click', ()=>{
+  arrivalsRow.scrollBy({ left: 280, behavior:'smooth' });
+});
+document.getElementById('arrivalsPrev').addEventListener('click', ()=>{
+  arrivalsRow.scrollBy({ left: -280, behavior:'smooth' });
+});
+
+function onWishlistChanged(){
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const id = Number(card.dataset.id);
+    card.querySelector('.wish-btn')?.classList.toggle('active', isWishlisted(id));
+  });
+}
+</script>
+
+<!-- ============ WhatsApp Chat Widget ============ -->
+<a href="https://wa.me/918107595781?text=Hello%20LUMÉ%20Studio" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   class="whatsapp-widget" 
+   id="whatsappWidget"
+   title="Chat with us on WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Account — LUMÉ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  >
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="ambient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="grain"></div>
+
+
+  <!-- Navbar -->
+  <nav class="lume-nav" id="mainNav">
+
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="brand">
+        LUM<span class="dot">É</span>
+      </a>
+
+      <div class="d-flex align-items-center gap-2">
+
+        <button
+          class="icon-btn"
+          id="chatbotToggleBtn"
+          aria-label="Open chatbot"
+        >
+          <i class="bi bi-chat-dots"></i>
+        </button>
+
+        <a
+          href="shop.html"
+          class="btn-lume-ghost d-none d-sm-inline-flex"
+        >
+          Continue Browsing
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- Main -->
+  <main>
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="auth-wrap">
+
+          <div class="text-center mb-4">
+
+            <span class="eyebrow">
+              Welcome
+            </span>
+
+            <h1
+              class="mt-2"
+              style="font-size:2rem"
+            >
+              Your LUMÉ Account
+            </h1>
+
+          </div>
+
+
+          <div class="glass p-4 p-md-5">
+
+            <!-- Tabs -->
+            <div class="auth-tabs glass-soft">
+
+              <div
+                class="auth-tab active"
+                data-tab="login"
+              >
+                Sign In
+              </div>
+
+              <div
+                class="auth-tab"
+                data-tab="register"
+              >
+                Create Account
+              </div>
+
+            </div>
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div
+              class="auth-panel active"
+              id="panel-login"
+            >
+
+              <form id="loginForm">
+
+                <div class="form-field">
+
+                  <label class="form-label-glass">
+                    Email Address
+                  </label>
+
+                  <input
+                    required
+                    id="loginEmail"
+                    type="email"
+                    class="form-control-glass"
+                    placeholder="you@email.com"
+                    autocomplete="email"
+                  >
+
+                </div>
+
+
+                <div class="form-field">
+
+                  <label class="form-label-glass">
+                    Password
+                  </label>
+
+                  <input
+                    required
+                    id="loginPassword"
+                    type="password"
+                    class="form-control-glass"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                  >
+
+                </div>
+
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                  <label class="form-check-inline-glass">
+
+                    <input
+                      type="checkbox"
+                      id="rememberMe"
+                    >
+
+                    Remember me
+
+                  </label>
+
+
+                  <a
+                    href="#"
+                    class="small"
+                    style="color:var(--accent-soft)"
+                    onclick="return false;"
+                  >
+                    Forgot password?
+                  </a>
+
+                </div>
+
+
+                <button
+                  type="submit"
+                  class="btn-lume-primary w-100"
+                  id="loginBtn"
+                >
+                  Sign In
+                </button>
+
+              </form>
+
+
+              <div class="auth-divider">
+                or continue with
+              </div>
+
+
+              <div class="social-auth">
+
+                <button
+                  type="button"
+                  class="btn-lume-ghost"
+                >
+                  <i class="bi bi-google"></i>
+                  Google
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-lume-ghost"
+                >
+                  <i class="bi bi-apple"></i>
+                  Apple
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- ================= REGISTER ================= -->
+
+            <div
+              class="auth-panel"
+              id="panel-register"
+            >
+
+              <form id="registerForm">
+
+                <div class="row g-3">
+
+                  <div class="col-md-6 form-field">
+
+                    <label class="form-label-glass">
+                      First Name
+                    </label>
+
+                    <input
+                      required
+                      id="registerFirstName"
+                      type="text"
+                      class="form-control-glass"
+                      placeholder="Amara"
+                      autocomplete="given-name"
+                    >
+
+                  </div>
+
+
+                  <div class="col-md-6 form-field">
+
+                    <label class="form-label-glass">
+                      Last Name
+                    </label>
+
+                    <input
+                      required
+                      id="registerLastName"
+                      type="text"
+                      class="form-control-glass"
+                      placeholder="Okafor"
+                      autocomplete="family-name"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                  <label class="form-label-glass">
+                    Email Address
+                  </label>
+
+                  <input
+                    required
+                    id="registerEmail"
+                    type="email"
+                    class="form-control-glass"
+                    placeholder="you@email.com"
+                    autocomplete="email"
+                  >
+
+                </div>
+
+
+                <div class="form-field">
+
+                  <label class="form-label-glass">
+                    Password
+                  </label>
+
+                  <input
+                    required
+                    id="registerPassword"
+                    type="password"
+                    minlength="8"
+                    class="form-control-glass"
+                    placeholder="Minimum 8 characters"
+                    autocomplete="new-password"
+                  >
+
+                </div>
+
+
+                <label class="form-check-inline-glass mb-3">
+
+                  <input
+                    required
+                    type="checkbox"
+                    id="termsCheck"
+                  >
+
+                  I agree to the Terms &amp; Privacy Policy
+
+                </label>
+
+
+                <button
+                  type="submit"
+                  class="btn-lume-primary w-100"
+                  id="registerBtn"
+                >
+                  Create Account
+                </button>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer style="margin-top:0;">
+
+    <div class="container">
+
+      <div
+        class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2"
+        style="border-top:none;"
+      >
+
+        <span>
+          © 2026 LUMÉ Studio. All rights reserved.
+        </span>
+
+        <div
+          class="d-flex gap-3 small"
+          style="color:var(--text-muted)"
+        >
+
+          <a
+            href="about.html"
+            style="color:inherit"
+          >
+            About
+          </a>
+
+          <a
+            href="contact.html"
+            style="color:inherit"
+          >
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- Chatbot -->
+  <div
+    class="chatbot-widget"
+    id="chatbotWidget"
+  >
+
+    <div class="chatbot-header">
+
+      <span>
+        LUMÉ Assistant
+      </span>
+
+      <button
+        class="btn-close-chatbot"
+        id="chatbotCloseBtn"
+        aria-label="Close chatbot"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+    </div>
+
+
+    <div
+      class="chatbot-messages"
+      id="chatbotMessages"
+    >
+
+      <div class="chatbot-msg bot-msg">
+
+        <p>
+          Hi! 👋 Welcome to LUMÉ.
+          How can I help you today?
+          I can assist with product recommendations,
+          shipping info, or answer questions about our collection.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="chatbot-input-area">
+
+      <input
+        type="text"
+        id="chatbotInput"
+        class="chatbot-input"
+        placeholder="Type your message..."
+        aria-label="Message input"
+      >
+
+      <button
+        class="chatbot-send-btn"
+        id="chatbotSendBtn"
+        aria-label="Send message"
+      >
+        <i class="bi bi-send-fill"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Scripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Our customer API -->
+  <script src="assets/js/lume-api.js"></script>
+
+  <!-- Main site JS -->
+  <script src="assets/js/main.js"></script>
+
+
+  <!-- Account JS -->
+  <script>
+    async function syncGuestDataAfterLogin() {
+      const guestCart = typeof getCart === 'function' ? getCart() : [];
+      const guestWishlist = typeof getWishlist === 'function' ? getWishlist() : [];
+      for (const item of guestCart) {
+        await LumeAPI.addCartItem(String(item.id), item.qty);
+      }
+      for (const id of guestWishlist) {
+        await LumeAPI.toggleWishlistItem(String(id));
+      }
+      localStorage.removeItem('lume_cart');
+      localStorage.removeItem('lume_wishlist');
+    }
+
+    async function loadOrderHistory() {
+      if (!window.LumeAPI.isLoggedIn()) return;
+      const section = document.createElement('section');
+      section.className = 'section pt-0';
+      section.innerHTML = '<div class="container"><div class="glass p-4 p-md-5"><h2 class="h4 mb-4">Order History</h2><div id="orderHistory"><p class="small">Loading orders...</p></div></div></div>';
+      document.querySelector('main').appendChild(section);
+      try {
+        const orders = await window.LumeAPI.getMyOrders();
+        const history = document.getElementById('orderHistory');
+        history.innerHTML = orders.length ? orders.map(order => `
+          <div class="d-flex justify-content-between align-items-center gap-3 py-3" style="border-top:1px solid var(--glass-border)">
+            <div><strong>${order.orderNumber}</strong><div class="small" style="color:var(--text-muted)">${new Date(order.createdAt).toLocaleDateString()} · ${order.items.length} item(s)</div></div>
+            <div class="text-end"><strong>$${Number(order.totalPrice).toFixed(2)}</strong><div class="small" style="color:var(--accent-soft)">${order.status}</div></div>
+          </div>`).join('') : '<p class="small mb-0">No orders yet.</p>';
+      } catch (error) {
+        document.getElementById('orderHistory').innerHTML = `<p class="small mb-0">${error.message || 'Unable to load orders.'}</p>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadOrderHistory);
+
+    /* =========================
+       AUTH TABS
+    ========================= */
+
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+
+      tab.addEventListener('click', () => {
+
+        document
+          .querySelectorAll('.auth-tab')
+          .forEach(item =>
+            item.classList.remove('active')
+          );
+
+        document
+          .querySelectorAll('.auth-panel')
+          .forEach(panel =>
+            panel.classList.remove('active')
+          );
+
+        tab.classList.add('active');
+
+        const target =
+          document.getElementById(
+            `panel-${tab.dataset.tab}`
+          );
+
+        if (target) {
+          target.classList.add('active');
+        }
+
+      });
+
+    });
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    document
+      .getElementById('loginForm')
+      .addEventListener('submit', async function (e) {
+
+        e.preventDefault();
+
+        const email =
+          document
+            .getElementById('loginEmail')
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById('loginPassword')
+            .value;
+
+        const button =
+          document.getElementById('loginBtn');
+
+        const originalText =
+          button.innerHTML;
+
+        if (!email || !password) {
+
+          if (typeof showToast === 'function') {
+            showToast(
+              'Please enter your email and password.',
+              'error'
+            );
+          } else {
+            console.warn(
+              'Please enter your email and password.'
+            );
+          }
+
+          return;
+        }
+
+
+        try {
+
+          button.disabled = true;
+
+          button.innerHTML =
+            '<i class="bi bi-hourglass-split"></i> Signing In...';
+
+
+          const user =
+            await LumeAPI.login(
+              email,
+              password
+            );
+
+          await syncGuestDataAfterLogin();
+
+
+          console.log(
+            '[LUMÉ] Customer login successful:',
+            user
+          );
+
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              `Welcome back, ${user.firstName || 'to LUMÉ'}!`,
+              'success'
+            );
+
+          }
+
+
+          setTimeout(() => {
+
+            window.location.href =
+              'index.html';
+
+          }, 800);
+
+        } catch (error) {
+
+          console.error(
+            '[LUMÉ] Customer login failed:',
+            error
+          );
+
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              error.message ||
+              'Invalid email or password.',
+              'error'
+            );
+
+          } else {
+
+            console.error(
+              error.message
+            );
+
+          }
+
+        } finally {
+
+          button.disabled = false;
+
+          button.innerHTML =
+            originalText;
+
+        }
+
+      });
+
+
+    /* =========================
+       REGISTER
+    ========================= */
+
+    document
+      .getElementById('registerForm')
+      .addEventListener('submit', async function (e) {
+
+        e.preventDefault();
+
+        const firstName =
+          document
+            .getElementById('registerFirstName')
+            .value
+            .trim();
+
+        const lastName =
+          document
+            .getElementById('registerLastName')
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById('registerEmail')
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById('registerPassword')
+            .value;
+
+        const terms =
+          document
+            .getElementById('termsCheck')
+            .checked;
+
+        const button =
+          document.getElementById('registerBtn');
+
+        const originalText =
+          button.innerHTML;
+
+
+        if (
+          !firstName ||
+          !email ||
+          !password
+        ) {
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              'Please complete all required fields.',
+              'error'
+            );
+
+          }
+
+          return;
+
+        }
+
+
+        if (password.length < 8) {
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              'Password must be at least 8 characters.',
+              'error'
+            );
+
+          }
+
+          return;
+
+        }
+
+
+        if (!terms) {
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              'Please accept the Terms & Privacy Policy.',
+              'error'
+            );
+
+          }
+
+          return;
+
+        }
+
+
+        try {
+
+          button.disabled = true;
+
+          button.innerHTML =
+            '<i class="bi bi-hourglass-split"></i> Creating...';
+
+
+          const user =
+            await LumeAPI.register({
+
+              firstName,
+              lastName,
+              email,
+              password
+
+            });
+
+          await syncGuestDataAfterLogin();
+
+
+          console.log(
+            '[LUMÉ] Customer registration successful:',
+            user
+          );
+
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              'Account created successfully!',
+              'success'
+            );
+
+          }
+
+
+          setTimeout(() => {
+
+            window.location.href =
+              'index.html';
+
+          }, 200);
+
+        } catch (error) {
+
+          console.error(
+            '[LUMÉ] Customer registration failed:',
+            error
+          );
+
+
+          if (typeof showToast === 'function') {
+
+            showToast(
+              error.message ||
+              'Unable to create account.',
+              'error'
+            );
+
+          }
+
+        } finally {
+
+          button.disabled = false;
+
+          button.innerHTML =
+            originalText;
+
+        }
+
+      });
+  </script>
+
+</body>
+</html>
