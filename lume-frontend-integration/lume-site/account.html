@@ -79,7 +79,7 @@
 
       <div class="container">
 
-        <div class="auth-wrap">
+        <div class="auth-wrap" id="authPanel">
 
           <div class="text-center mb-4">
 
@@ -344,6 +344,20 @@
 
         </div>
 
+        <div class="auth-wrap d-none" id="signedInPanel">
+          <div class="text-center mb-4">
+            <span class="eyebrow">Account</span>
+            <h1 class="mt-2" style="font-size:2rem">Welcome, <span id="accountUserName">LUMÉ customer</span></h1>
+          </div>
+          <div class="glass p-4 p-md-5 text-center">
+            <p class="mb-1">You are signed in as</p>
+            <p class="mb-4" id="accountUserEmail"></p>
+            <button type="button" class="btn-lume-primary" id="accountLogoutBtn">
+              <i class="bi bi-box-arrow-right"></i> Log out
+            </button>
+          </div>
+        </div>
+
       </div>
 
     </section>
@@ -503,6 +517,26 @@
       }
     }
 
+    function renderAccountState() {
+      const isLoggedIn = window.LumeAPI.isLoggedIn();
+      const authPanel = document.getElementById('authPanel');
+      const signedInPanel = document.getElementById('signedInPanel');
+      authPanel.classList.toggle('d-none', isLoggedIn);
+      signedInPanel.classList.toggle('d-none', !isLoggedIn);
+
+      if (!isLoggedIn) return;
+
+      const user = window.LumeAPI.getUser();
+      const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
+      document.getElementById('accountUserName').textContent = fullName || 'LUMÉ customer';
+      document.getElementById('accountUserEmail').textContent = user?.email || '';
+      document.getElementById('accountLogoutBtn').addEventListener('click', () => {
+        window.LumeAPI.logout();
+        window.location.reload();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderAccountState);
     document.addEventListener('DOMContentLoaded', loadOrderHistory);
 
     /* =========================

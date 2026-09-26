@@ -233,6 +233,65 @@ async function handleAddClick(e, id, btn) {
 function initLumeChrome() {
   updateBadges();
 
+  const isLoggedIn = Boolean(window.LumeAPI?.isLoggedIn?.());
+  const navActions = document.querySelector('#mainNav .container > .d-flex');
+  const accountLink = navActions?.querySelector('a[aria-label="Account"]');
+  const logout = () => {
+    window.LumeAPI?.logout?.();
+    window.location.href = 'account.html';
+  };
+
+  if (navActions) {
+    const accountMenu = document.createElement('div');
+    accountMenu.className = accountLink ? 'account-menu d-none d-sm-block' : 'account-menu';
+    accountMenu.innerHTML = `
+      <button type="button" class="icon-btn account-menu-toggle" aria-label="Open account menu" aria-haspopup="true" aria-expanded="false" title="My Account">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <div class="account-menu-panel" role="menu">
+        ${isLoggedIn
+          ? '<a href="account.html" role="menuitem"><i class="bi bi-person"></i> My Account</a><button type="button" role="menuitem" data-account-logout><i class="bi bi-box-arrow-right"></i> Logout</button>'
+          : '<a href="account.html" role="menuitem"><i class="bi bi-box-arrow-in-right"></i> Sign In / Create Account</a>'}
+      </div>`;
+    accountLink?.remove();
+    navActions.appendChild(accountMenu);
+
+    const menuToggle = accountMenu.querySelector('.account-menu-toggle');
+    const closeMenu = () => {
+      accountMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+    menuToggle.addEventListener('click', () => {
+      const isOpen = accountMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    accountMenu.querySelector('[data-account-logout]')?.addEventListener('click', logout);
+    document.addEventListener('click', event => {
+      if (!accountMenu.contains(event.target)) closeMenu();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  }
+
+  const mobileNav = document.querySelector('#mobileMenu .nav-links');
+  if (mobileNav) {
+    const accountItem = mobileNav.querySelector('a[href="account.html"]');
+    if (accountItem) accountItem.textContent = isLoggedIn ? 'My Account' : 'Sign In / Create Account';
+    if (isLoggedIn) {
+      const logoutItem = document.createElement('li');
+      const logoutLink = document.createElement('a');
+      logoutLink.href = 'account.html';
+      logoutLink.textContent = 'Logout';
+      logoutLink.addEventListener('click', event => {
+        event.preventDefault();
+        logout();
+      });
+      logoutItem.appendChild(logoutLink);
+      mobileNav.appendChild(logoutItem);
+    }
+  }
+
   /* Announcement bar rotation */
   const items = document.querySelectorAll('.announce-item');
   let idx = 0;

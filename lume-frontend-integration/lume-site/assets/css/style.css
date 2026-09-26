@@ -158,6 +158,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border:1px solid var(--glass-border); position:relative; transition:all .25s var(--ease); cursor:pointer;
 }
 .icon-btn:hover{ background:var(--glass-bg-strong); border-color:var(--glass-border-strong); transform:translateY(-2px); color:var(--accent-soft); }
+.account-menu{ position:relative; }
+.account-menu-panel{
+  display:none; position:absolute; top:calc(100% + .65rem); right:0; z-index:1050; min-width:180px;
+  padding:.4rem; background:var(--bg-elev); border:1px solid var(--glass-border-strong); border-radius:10px; box-shadow:var(--shadow-glass-sm);
+}
+.account-menu.open .account-menu-panel{ display:grid; }
+.account-menu-panel a,
+.account-menu-panel button{
+  display:flex; align-items:center; gap:.65rem; width:100%; padding:.7rem .75rem; border:0; border-radius:7px;
+  background:transparent; color:var(--text-primary); font:inherit; text-align:left; text-decoration:none; white-space:nowrap; cursor:pointer;
+}
+.account-menu-panel a:hover,
+.account-menu-panel button:hover,
+.account-menu-panel a:focus-visible,
+.account-menu-panel button:focus-visible{ background:var(--glass-bg-strong); color:var(--accent-soft); outline:none; }
 .icon-badge{
   position:absolute; top:-4px; right:-4px; background:var(--accent); color:#1a1409;
   font-size:0.62rem; font-weight:700; width:18px; height:18px; border-radius:50%;
