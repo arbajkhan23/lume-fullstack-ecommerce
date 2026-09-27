@@ -492,14 +492,17 @@
   <!-- Account JS -->
   <script>
     async function syncGuestDataAfterLogin() {
-      const guestCart = typeof getCart === 'function' ? getCart() : [];
-      const guestWishlist = typeof getWishlist === 'function' ? getWishlist() : [];
-      for (const item of guestCart) {
+      const guestCart = typeof getCart === 'function' ? await getCart() : [];
+      const guestWishlist = typeof getWishlist === 'function' ? await getWishlist() : [];
+
+      for (const item of Array.isArray(guestCart) ? guestCart : []) {
         await LumeAPI.addCartItem(String(item.id), item.qty);
       }
-      for (const id of guestWishlist) {
+
+      for (const id of Array.isArray(guestWishlist) ? guestWishlist : []) {
         await LumeAPI.toggleWishlistItem(String(id));
       }
+
       localStorage.removeItem('lume_cart');
       localStorage.removeItem('lume_wishlist');
     }
@@ -659,10 +662,12 @@
 
 
           setTimeout(() => {
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
 
-            window.location.href =
-              'index.html';
-
+            window.location.href = redirect
+              ? redirect
+              : 'index.html';
           }, 800);
 
         } catch (error) {
@@ -836,10 +841,12 @@
 
 
           setTimeout(() => {
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
 
-            window.location.href =
-              'index.html';
-
+            window.location.href = redirect
+              ? redirect
+              : 'index.html';
           }, 200);
 
         } catch (error) {
