@@ -25,7 +25,7 @@ function catLabel(slug) {
 
 async function loadRemoteCategories() {
   try {
-    const response = await fetch("http://localhost:5000/api/categories");
+    const response = await fetch("https://lume-backend-oz8t.onrender.com/api/categories");
 
     if (!response.ok) {
       throw new Error(`Categories request failed: ${response.status}`);
@@ -578,3 +578,4 @@ try {
   );
   applyRemoteProducts(cachedProducts);
 } catch (error) {}
+

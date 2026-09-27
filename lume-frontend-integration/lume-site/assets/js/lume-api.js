@@ -1,5 +1,5 @@
 const LUME_API_BASE =
-  'http://localhost:5000/api';
+  'https://lume-backend-oz8t.onrender.com/api';
 
 const LUME_USER_TOKEN_KEY =
   'lume_user_token';
