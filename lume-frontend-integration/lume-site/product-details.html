@@ -18,8 +18,7 @@
 
 <div class="announce-bar" id="announceBar">
   <div class="container announce-track">
-    <div class="announce-item active">Free shipping on orders over <strong>$75</strong> — every order, every time.</div>
-    <div class="announce-item">Use code <strong>LUME10</strong> for 10% off your first order.</div>
+    <div class="announce-item active">Free shipping on orders over <strong>$75 USD</strong>.</div>
   </div>
   <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
 </div>
@@ -83,10 +82,6 @@
       <div class="col-lg-6">
         <span class="product-cat" id="pdCat"></span>
         <h1 class="pd-title mt-2" id="pdName"></h1>
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="stars" id="pdStars"></span>
-          <span class="rating-count" id="pdReviewCount"></span>
-        </div>
         <div class="d-flex align-items-baseline gap-3 mb-3">
           <span class="pd-price" id="pdPrice"></span>
           <span class="price-old" id="pdOldPrice"></span>
@@ -95,8 +90,7 @@
         <p id="pdDesc"></p>
 
         <div class="pd-meta-row mb-4">
-          <span><i class="bi bi-truck"></i>Free shipping over $75</span>
-          <span><i class="bi bi-arrow-repeat"></i>30-day returns</span>
+          <span><i class="bi bi-truck"></i>Free over $75 USD; $8.50 otherwise</span>
           <span id="pdStockStatus"></span>
         </div>
 
@@ -110,31 +104,20 @@
           <button class="icon-btn" id="pdWishBtn" aria-label="Toggle wishlist" style="width:52px;height:52px"><i class="bi bi-heart"></i></button>
         </div>
 
-        <div class="d-flex align-items-center gap-3">
-          <div class="glass-soft px-3 py-2" style="border-radius:999px; font-size:0.8rem; color:var(--text-secondary)"><i class="bi bi-shield-check me-1" style="color:var(--accent)"></i>Secure Checkout</div>
-          <div class="glass-soft px-3 py-2" style="border-radius:999px; font-size:0.8rem; color:var(--text-secondary)"><i class="bi bi-patch-check me-1" style="color:var(--accent)"></i>Quality Guaranteed</div>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <div class="glass-soft px-3 py-2" style="border-radius:999px; font-size:0.8rem; color:var(--text-secondary)"><i class="bi bi-box-seam me-1" style="color:var(--accent)"></i>Stock checked at order</div>
+          <div class="glass-soft px-3 py-2" style="border-radius:999px; font-size:0.8rem; color:var(--text-secondary)"><i class="bi bi-cash-coin me-1" style="color:var(--accent)"></i>Cash on Delivery</div>
         </div>
 
         <!-- Tabs -->
         <ul class="nav tabs-glass mt-5" id="pdTabs" role="tablist">
           <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabDesc" type="button">Description</button></li>
           <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabInfo" type="button">Details</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabReviews" type="button">Reviews</button></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade show active" id="tabDesc"><p id="pdDescFull"></p></div>
           <div class="tab-pane fade" id="tabInfo">
             <ul class="list-unstyled" id="pdFeatures" style="color:var(--text-secondary); font-size:0.9rem;"></ul>
-          </div>
-          <div class="tab-pane fade" id="tabReviews">
-            <div class="review-row">
-              <img src="https://i.pravatar.cc/80?img=47" alt="Portrait of Amara O.">
-              <div><div class="review-name">Amara O.</div><div class="stars my-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="mb-0 small">Exactly as pictured, and the finish feels even better in person.</p></div>
-            </div>
-            <div class="review-row">
-              <img src="https://i.pravatar.cc/80?img=12" alt="Portrait of Daniel K.">
-              <div><div class="review-name">Daniel K.</div><div class="stars my-1"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div><p class="mb-0 small">Well packaged and arrived faster than expected. Would buy again.</p></div>
-            </div>
           </div>
         </div>
       </div>
@@ -157,18 +140,12 @@
       <div class="col-lg-4">
         <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
         <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
-        <div class="footer-social mt-3">
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
-          <a href="#" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        </div>
       </div>
       <div class="col-6 col-lg-2">
         <div class="footer-heading">Shop</div>
         <div class="footer-links">
           <a href="shop.html?cat=lighting">Lighting</a>
-          <a href="shop.html?cat=decor">Decor</a>
+          <a href="shop.html?cat=home-decor">Decor</a>
           <a href="shop.html?cat=fragrance">Fragrance</a>
           <a href="shop.html?cat=accessories">Accessories</a>
         </div>
@@ -178,7 +155,7 @@
         <div class="footer-links">
           <a href="contact.html">Contact Us</a>
           <a href="about.html">Shipping Info</a>
-          <a href="cart.html">Returns</a>
+          <a href="contact.html">Returns questions</a>
           <a href="about.html">FAQs</a>
         </div>
       </div>
@@ -197,7 +174,6 @@
     Arbaj Khan
   </a>
 </div></span>
-      <div class="payment-icons"><i class="bi bi-credit-card"></i><i class="bi bi-paypal"></i><i class="bi bi-apple"></i><i class="bi bi-google"></i></div>
     </div>
   </div>
 </footer>
@@ -233,15 +209,13 @@ document.querySelectorAll('.pd-thumb').forEach(t=>{
 
 document.getElementById('pdCat').textContent = catLabel(product.cat);
 document.getElementById('pdName').textContent = product.name;
-document.getElementById('pdStars').innerHTML = starHTML(product.rating);
-document.getElementById('pdReviewCount').textContent = `(${product.reviews} reviews)`;
-document.getElementById('pdPrice').textContent = `$${product.price.toFixed(2)}`;
+document.getElementById('pdPrice').textContent = formatMoney(product.price);
 if(product.old){
-  document.getElementById('pdOldPrice').textContent = `$${product.old.toFixed(2)}`;
+  document.getElementById('pdOldPrice').textContent = formatMoney(product.old);
   document.getElementById('pdOff').textContent = `-${Math.round(100-(product.price/product.old*100))}%`;
 }
 document.getElementById('pdDesc').textContent = product.desc;
-document.getElementById('pdDescFull').textContent = product.desc + ' Every piece is quality-checked before it leaves the studio, and arrives in recyclable, plastic-free packaging.';
+document.getElementById('pdDescFull').textContent = product.desc;
 document.getElementById('pdFeatures').innerHTML = product.features.map(f => `<li class="mb-2"><i class="bi bi-check2 me-2" style="color:var(--accent)"></i>${f}</li>`).join('');
 
 const stockEl = document.getElementById('pdStockStatus');

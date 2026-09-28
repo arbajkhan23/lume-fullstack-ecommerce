@@ -19,8 +19,8 @@
 
 <div class="announce-bar" id="announceBar">
   <div class="container announce-track">
-    <div class="announce-item active">Free shipping on orders over <strong>$75</strong> — every order, every time.</div>
-    <div class="announce-item">Use code <strong>LUME10</strong> for 10% off your first order.</div>
+    <div class="announce-item active">Free shipping on orders over <strong>$75 USD</strong>.</div>
+    <div class="announce-item">Explore the new lighting collection and considered home objects.</div>
     <div class="announce-item">New lighting collection just landed — <strong>shop New Arrivals</strong>.</div>
   </div>
   <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
@@ -90,14 +90,8 @@
           <label class="form-check-glass"><input type="checkbox" id="fStock"> In Stock Only</label>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Max Price: <span id="priceVal">$450</span></div>
+          <div class="filter-group-title">Max Price: <span id="priceVal">$450.00</span> USD</div>
           <input type="range" class="range-glass" id="priceRange" min="20" max="450" value="450">
-        </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Rating</div>
-          <label class="form-check-glass"><input type="radio" name="ratingFilter" value="0" checked> Any rating</label>
-          <label class="form-check-glass"><input type="radio" name="ratingFilter" value="4.5"> 4.5 &amp; up</label>
-          <label class="form-check-glass"><input type="radio" name="ratingFilter" value="4"> 4 &amp; up</label>
         </div>
         <button class="btn-lume-ghost w-100" id="clearFilters"><i class="bi bi-arrow-counterclockwise"></i> Clear Filters</button>
       </aside>
@@ -111,7 +105,6 @@
               <option value="featured">Sort: Featured</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
               <option value="newest">Newest</option>
             </select>
           </div>
@@ -136,18 +129,12 @@
       <div class="col-lg-4">
         <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
         <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
-        <div class="footer-social mt-3">
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
-          <a href="#" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        </div>
       </div>
       <div class="col-6 col-lg-2">
         <div class="footer-heading">Shop</div>
         <div class="footer-links">
           <a href="shop.html?cat=lighting">Lighting</a>
-          <a href="shop.html?cat=decor">Decor</a>
+          <a href="shop.html?cat=home-decor">Decor</a>
           <a href="shop.html?cat=fragrance">Fragrance</a>
           <a href="shop.html?cat=accessories">Accessories</a>
         </div>
@@ -157,7 +144,7 @@
         <div class="footer-links">
           <a href="contact.html">Contact Us</a>
           <a href="about.html">Shipping Info</a>
-          <a href="cart.html">Returns</a>
+          <a href="contact.html">Returns questions</a>
           <a href="about.html">FAQs</a>
         </div>
       </div>
@@ -176,7 +163,6 @@
     Arbaj Khan
   </a>
 </div></span>
-      <div class="payment-icons"><i class="bi bi-credit-card"></i><i class="bi bi-paypal"></i><i class="bi bi-apple"></i><i class="bi bi-google"></i></div>
     </div>
   </div>
 </footer>
@@ -207,7 +193,6 @@ function getFilteredProducts(){
   const wantSale = document.getElementById('fSale').checked;
   const wantStock = document.getElementById('fStock').checked;
   const maxPrice = Number(document.getElementById('priceRange').value);
-  const minRating = Number(document.querySelector('input[name="ratingFilter"]:checked').value);
 
   return PRODUCTS.filter(p=>{
     if(checkedCats.length && !checkedCats.includes(p.cat)) return false;
@@ -215,7 +200,6 @@ function getFilteredProducts(){
     if(wantSale && p.tag !== 'sale') return false;
     if(wantStock && !p.stock) return false;
     if(p.price > maxPrice) return false;
-    if(p.rating < minRating) return false;
     if(searchQuery && !p.name.toLowerCase().includes(searchQuery)) return false;
     return true;
   });
@@ -226,7 +210,6 @@ function sortProducts(list){
   const arr = [...list];
   if(sort === 'price-asc') arr.sort((a,b)=>a.price-b.price);
   else if(sort === 'price-desc') arr.sort((a,b)=>b.price-a.price);
-  else if(sort === 'rating') arr.sort((a,b)=>b.rating-a.rating);
   else if(sort === 'newest') arr.sort((a,b)=> (b.tag==='new')-(a.tag==='new') || b.id-a.id);
   return arr;
 }
@@ -264,11 +247,11 @@ function renderShop(){
 function onProductsLoaded(){ renderShop(); }
 
 document.getElementById('priceRange').addEventListener('input', (e)=>{
-  document.getElementById('priceVal').textContent = `$${e.target.value}`;
+  document.getElementById('priceVal').textContent = formatMoney(e.target.value);
 });
 
 ['change','input'].forEach(evt=>{
-  document.querySelectorAll('#catFilters input, #fNew, #fSale, #fStock, #priceRange, input[name="ratingFilter"], #sortSelect').forEach(el=>{
+  document.querySelectorAll('#catFilters input, #fNew, #fSale, #fStock, #priceRange, #sortSelect').forEach(el=>{
     el.addEventListener(evt, ()=>{ currentPage = 1; renderShop(); });
   });
 });
@@ -287,8 +270,7 @@ function clearAllFilters(){
   document.getElementById('fSale').checked = false;
   document.getElementById('fStock').checked = false;
   document.getElementById('priceRange').value = 450;
-  document.getElementById('priceVal').textContent = '$450';
-  document.querySelector('input[name="ratingFilter"][value="0"]').checked = true;
+  document.getElementById('priceVal').textContent = formatMoney(450);
   currentPage = 1;
   renderShop();
 }

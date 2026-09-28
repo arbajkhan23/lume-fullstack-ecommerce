@@ -18,7 +18,7 @@
 
 <div class="announce-bar" id="announceBar">
   <div class="container announce-track">
-    <div class="announce-item active">Free shipping on orders over <strong>$75</strong> — every order, every time.</div>
+    <div class="announce-item active">Free shipping on orders over <strong>$75 USD</strong>.</div>
   </div>
   <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
 </div>
@@ -85,14 +85,15 @@
         <div class="order-summary glass">
           <h3 class="h5 mb-3">Order Summary</h3>
           <div class="promo-row">
-            <input type="text" class="form-control-glass" placeholder="Promo code" id="promoInput">
+            <input type="text" class="form-control-glass" placeholder="Coupon code" aria-label="Coupon code" id="promoInput">
             <button class="btn-lume-sm" id="applyPromoBtn">Apply</button>
           </div>
           <div class="row-line"><span>Subtotal</span><span id="sumSubtotal">$0.00</span></div>
           <div class="row-line"><span>Shipping</span><span id="sumShipping">$0.00</span></div>
-          <div class="row-line" id="promoRow" style="display:none"><span>Promo (LUME10)</span><span id="sumPromo">-$0.00</span></div>
+          <div class="row-line" id="promoRow" style="display:none"><span id="promoLabel">Discount</span><span id="sumPromo">-$0.00</span></div>
           <div class="row-line total"><span>Total</span><span id="sumTotal">$0.00</span></div>
-          <a href="checkout.html" class="btn-lume-primary w-100 mt-3"><i class="bi bi-lock"></i> Proceed to Checkout</a>
+          <p class="currency-note">Prices shown in USD</p>
+          <a href="checkout.html" class="btn-lume-primary w-100 mt-3"><i class="bi bi-arrow-right"></i> Proceed to Checkout</a>
           <p class="small text-center mt-3 mb-0" id="freeShipNote"></p>
         </div>
       </div>
@@ -115,8 +116,8 @@
         <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
         <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
       </div>
-      <div class="col-6 col-lg-2"><div class="footer-heading">Shop</div><div class="footer-links"><a href="shop.html?cat=lighting">Lighting</a><a href="shop.html?cat=decor">Decor</a><a href="shop.html?cat=fragrance">Fragrance</a></div></div>
-      <div class="col-6 col-lg-2"><div class="footer-heading">Customer Care</div><div class="footer-links"><a href="contact.html">Contact Us</a><a href="about.html">Shipping Info</a><a href="cart.html">Returns</a></div></div>
+      <div class="col-6 col-lg-2"><div class="footer-heading">Shop</div><div class="footer-links"><a href="shop.html?cat=lighting">Lighting</a><a href="shop.html?cat=home-decor">Decor</a><a href="shop.html?cat=fragrance">Fragrance</a></div></div>
+      <div class="col-6 col-lg-2"><div class="footer-heading">Customer Care</div><div class="footer-links"><a href="contact.html">Contact Us</a><a href="about.html">Shipping Info</a><a href="contact.html">Returns questions</a></div></div>
       <div class="col-lg-4">
         <div class="footer-heading">Visit the Studio</div>
         <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
@@ -131,7 +132,6 @@
     Arbaj Khan
   </a>
 </div></span>
-      <div class="payment-icons"><i class="bi bi-credit-card"></i><i class="bi bi-paypal"></i><i class="bi bi-apple"></i><i class="bi bi-google"></i></div>
     </div>
   </div>
 </footer>
@@ -143,7 +143,8 @@
 <script src="assets/js/main.js"></script>
 <script src="assets/js/lume-api.js"></script>
 <script>
-let promoApplied = false;
+let promoApplied = null;
+const LUME_COUPON_KEY = 'lume_coupon_code';
 
 async function getPageCart(){
   return window.LumeAPI?.isLoggedIn?.() && window.LumeAPI.getCart
@@ -157,6 +158,8 @@ async function renderCart(){
   const emptyState = document.getElementById('cartEmptyState');
 
   if(cart.length === 0){
+    localStorage.removeItem(LUME_COUPON_KEY);
+    promoApplied = null;
     hasItems.classList.add('d-none');
     emptyState.classList.remove('d-none');
     return;
@@ -173,39 +176,53 @@ async function renderCart(){
     subtotal += lineTotal;
     return `
     <tr data-id="${productId}">
-      <td>
+      <td data-label="Product">
         <div class="cart-item-info">
           <a href="product-details.html?id=${p._id || p.id}" class="cart-item-img"><img src="${p.images?.[0]?.url || p.image || `https://picsum.photos/seed/${p.img}/160/160`}" alt="${p.name}"></a>
           <div><a href="product-details.html?id=${p._id || p.id}" class="product-name-link"><div class="cart-item-name">${p.name}</div></a><span class="product-cat">${catLabel(p.cat || p.category?.slug || '')}</span></div>
         </div>
       </td>
-      <td>$${p.price.toFixed(2)}</td>
-      <td>
+      <td data-label="Price">${formatMoney(p.price)}</td>
+      <td data-label="Quantity">
         <div class="qty-stepper">
           <button type="button" class="qty-dec" aria-label="Decrease quantity">−</button>
           <input type="number" class="qty-val" value="${item.qty}" min="1" max="10" aria-label="Quantity">
           <button type="button" class="qty-inc" aria-label="Increase quantity">+</button>
         </div>
       </td>
-      <td class="fw-semibold" style="color:var(--text-primary)">$${lineTotal.toFixed(2)}</td>
-      <td><button class="cart-remove" aria-label="Remove item"><i class="bi bi-trash3"></i></button></td>
+      <td class="fw-semibold" data-label="Subtotal" style="color:var(--text-primary)">${formatMoney(lineTotal)}</td>
+      <td data-label="Remove"><button class="cart-remove" aria-label="Remove item"><i class="bi bi-trash3"></i></button></td>
     </tr>`;
   }).join('');
   document.getElementById('cartRows').innerHTML = rows;
 
-  const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 8.5;
-  const promoDiscount = promoApplied ? subtotal * 0.10 : 0;
-  const total = subtotal + shipping - promoDiscount;
+  const savedCoupon = localStorage.getItem(LUME_COUPON_KEY);
+  promoApplied = null;
+  if(savedCoupon && window.LumeAPI?.isLoggedIn?.()){
+    try{
+      promoApplied = await window.LumeAPI.validateCoupon(savedCoupon, subtotal);
+    }catch(error){
+      localStorage.removeItem(LUME_COUPON_KEY);
+      showToast(error.message || 'Coupon is no longer valid', 'bi-exclamation-circle');
+    }
+  }else if(savedCoupon){
+    localStorage.removeItem(LUME_COUPON_KEY);
+  }
 
-  document.getElementById('sumSubtotal').textContent = `$${subtotal.toFixed(2)}`;
-  document.getElementById('sumShipping').textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
+  const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 8.5;
+  const promoDiscount = Number(promoApplied?.discount) || 0;
+  const total = Math.max(0, subtotal + shipping - promoDiscount);
+
+  document.getElementById('sumSubtotal').textContent = formatMoney(subtotal);
+  document.getElementById('sumShipping').textContent = shipping === 0 ? 'Free' : formatMoney(shipping);
   document.getElementById('promoRow').style.display = promoApplied ? 'flex' : 'none';
-  document.getElementById('sumPromo').textContent = `-$${promoDiscount.toFixed(2)}`;
-  document.getElementById('sumTotal').textContent = `$${total.toFixed(2)}`;
+  document.getElementById('promoLabel').textContent = promoApplied ? `Discount (${promoApplied.code})` : 'Discount';
+  document.getElementById('sumPromo').textContent = formatMoney(-promoDiscount);
+  document.getElementById('sumTotal').textContent = formatMoney(total);
 
   const remaining = 75 - subtotal;
   document.getElementById('freeShipNote').textContent = remaining > 0
-    ? `Add $${remaining.toFixed(2)} more for free shipping`
+    ? `Add ${formatMoney(remaining)} more for free shipping`
     : "You've unlocked free shipping!";
 
   document.querySelectorAll('#cartRows tr').forEach(row=>{
@@ -233,17 +250,36 @@ async function renderCart(){
 document.getElementById('clearCartBtn').addEventListener('click', async ()=>{
   if(window.LumeAPI?.isLoggedIn?.() && window.LumeAPI.clearCart) await window.LumeAPI.clearCart();
   else getLocalCart().forEach(i => removeFromCart(i.id));
+  localStorage.removeItem(LUME_COUPON_KEY);
+  promoApplied = null;
   showToast('Cart cleared');
   renderCart();
 });
 
-document.getElementById('applyPromoBtn').addEventListener('click', ()=>{
+document.getElementById('applyPromoBtn').addEventListener('click', async ()=>{
   const code = document.getElementById('promoInput').value.trim().toUpperCase();
-  if(code === 'LUME10'){
-    promoApplied = true;
-    showToast('Promo code applied — 10% off');
-  } else {
-    showToast('Invalid promo code', 'bi-exclamation-circle');
+  if(!code){
+    showToast('Enter a coupon code to continue', 'bi-exclamation-circle');
+    return;
+  }
+  if(!window.LumeAPI?.isLoggedIn?.()){
+    showToast('Sign in to apply a coupon', 'bi-exclamation-circle');
+    setTimeout(()=>{ window.location.href = 'account.html?redirect=cart.html'; }, 700);
+    return;
+  }
+  try{
+    const cart = await getPageCart();
+    const subtotal = cart.reduce((sum, item)=>{
+      const product = item.product || getProductById(item.id);
+      return sum + (product ? product.price * item.qty : 0);
+    }, 0);
+    promoApplied = await window.LumeAPI.validateCoupon(code, subtotal);
+    localStorage.setItem(LUME_COUPON_KEY, promoApplied.code);
+    showToast(`Coupon applied: ${formatMoney(promoApplied.discount)} off`);
+  }catch(error){
+    promoApplied = null;
+    localStorage.removeItem(LUME_COUPON_KEY);
+    showToast(error.message || 'Coupon could not be applied', 'bi-exclamation-circle');
   }
   renderCart();
 });

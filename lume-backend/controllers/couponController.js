@@ -14,7 +14,7 @@ const validateCoupon = asyncHandler(async (req, res) => {
   }
   if (subtotal < coupon.minOrderValue) {
     res.status(400);
-    throw new Error(`This coupon requires a minimum order of $${coupon.minOrderValue}`);
+    throw new Error(`This coupon requires a minimum order of $${coupon.minOrderValue} USD`);
   }
 
   let discount =

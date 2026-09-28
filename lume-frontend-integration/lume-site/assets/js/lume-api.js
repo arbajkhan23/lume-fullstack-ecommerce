@@ -229,6 +229,14 @@ async function getMyOrders() {
   return unwrapData(result) || [];
 }
 
+async function validateCoupon(code, subtotal) {
+  const result = await lumeApiRequest('/coupons/validate', {
+    method: 'POST',
+    body: JSON.stringify({ code, subtotal }),
+  });
+  return unwrapData(result);
+}
+
 async function placeOrder(data) {
   const result = await lumeApiRequest('/orders', {
     method: 'POST',
@@ -327,6 +335,7 @@ window.LumeAPI = {
   getWishlist,
   toggleWishlistItem,
   getMyOrders,
+  validateCoupon,
   placeOrder,
   getProducts,
   getBanners,

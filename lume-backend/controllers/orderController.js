@@ -68,7 +68,7 @@ const createOrder = asyncHandler(async (req, res) => {
     }
     if (itemsPrice < coupon.minOrderValue) {
       res.status(400);
-      throw new Error(`Coupon requires a minimum order of $${coupon.minOrderValue}`);
+      throw new Error(`Coupon requires a minimum order of $${coupon.minOrderValue} USD`);
     }
     discountPrice =
       coupon.discountType === 'percentage'

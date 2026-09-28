@@ -519,7 +519,7 @@
         history.innerHTML = orders.length ? orders.map(order => `
           <div class="d-flex justify-content-between align-items-center gap-3 py-3" style="border-top:1px solid var(--glass-border)">
             <div><strong>${order.orderNumber}</strong><div class="small" style="color:var(--text-muted)">${new Date(order.createdAt).toLocaleDateString()} · ${order.items.length} item(s)</div></div>
-            <div class="text-end"><strong>$${Number(order.totalPrice).toFixed(2)}</strong><div class="small" style="color:var(--accent-soft)">${order.status}</div></div>
+            <div class="text-end"><strong>${formatMoney(order.totalPrice)}</strong><div class="small" style="color:var(--accent-soft)">${order.status}</div></div>
           </div>`).join('') : '<p class="small mb-0">No orders yet.</p>';
       } catch (error) {
         document.getElementById('orderHistory').innerHTML = `<p class="small mb-0">${error.message || 'Unable to load orders.'}</p>`;

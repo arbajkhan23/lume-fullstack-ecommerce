@@ -21,7 +21,7 @@
     <a href="index.html" class="brand">LUM<span class="dot">É</span></a>
     <div class="d-flex align-items-center gap-2">
       <button class="icon-btn" id="chatbotToggleBtn" aria-label="Open chatbot"><i class="bi bi-chat-dots"></i></button>
-      <span class="d-none d-sm-inline small" style="color:var(--text-muted)"><i class="bi bi-shield-lock me-1"></i>Secure Checkout</span>
+      <span class="d-none d-sm-inline small" style="color:var(--text-muted)"><i class="bi bi-receipt me-1"></i>Order review</span>
       <a href="cart.html" class="icon-btn" id="navCart" aria-label="Cart"><i class="bi bi-bag"></i><span class="icon-badge" id="cartCount">0</span></a>
     </div>
   </div>
@@ -49,31 +49,25 @@
           <h3 class="h5 mb-3"><i class="bi bi-geo-alt me-2" style="color:var(--accent)"></i>Shipping Address</h3>
           <form id="checkoutForm">
             <div class="row g-3">
-              <div class="col-md-6 form-field"><label class="form-label-glass">Full Name</label><input required class="form-control-glass" type="text" placeholder="Amara Okafor"></div>
-              <div class="col-md-6 form-field"><label class="form-label-glass">Email Address</label><input required class="form-control-glass" type="email" placeholder="amara@email.com"></div>
-              <div class="col-12 form-field"><label class="form-label-glass">Street Address</label><input required class="form-control-glass" type="text" placeholder="123 C-Scheme Road"></div>
-              <div class="col-md-4 form-field"><label class="form-label-glass">City</label><input required class="form-control-glass" type="text" placeholder="Jaipur"></div>
-              <div class="col-md-4 form-field"><label class="form-label-glass">State</label><input required class="form-control-glass" type="text" placeholder="Rajasthan"></div>
-              <div class="col-md-4 form-field"><label class="form-label-glass">ZIP / Postal Code</label><input required class="form-control-glass" type="text" placeholder="302001"></div>
+              <div class="col-md-6 form-field"><label class="form-label-glass">Full Name</label><input required class="form-control-glass" type="text" autocomplete="name" placeholder="Your name"></div>
+              <div class="col-md-6 form-field"><label class="form-label-glass">Email Address</label><input required class="form-control-glass" type="email" autocomplete="email" placeholder="you@example.com"></div>
+              <div class="col-12 form-field"><label class="form-label-glass">Street Address</label><input required class="form-control-glass" type="text" autocomplete="street-address" placeholder="Street and building"></div>
+              <div class="col-md-4 form-field"><label class="form-label-glass">City</label><input required class="form-control-glass" type="text" autocomplete="address-level2" placeholder="City"></div>
+              <div class="col-md-4 form-field"><label class="form-label-glass">State</label><input required class="form-control-glass" type="text" autocomplete="address-level1" placeholder="State or region"></div>
+              <div class="col-md-4 form-field"><label class="form-label-glass">ZIP / Postal Code</label><input required class="form-control-glass" type="text" autocomplete="postal-code" placeholder="Postal code"></div>
               <div class="col-md-6 form-field"><label class="form-label-glass">Country</label>
                 <select class="form-control-glass"><option>India</option><option>United States</option><option>United Kingdom</option><option>United Arab Emirates</option></select>
               </div>
-              <div class="col-md-6 form-field"><label class="form-label-glass">Phone Number</label><input required class="form-control-glass" type="tel" placeholder="+91 98765 43210"></div>
+              <div class="col-md-6 form-field"><label class="form-label-glass">Phone Number</label><input required class="form-control-glass" type="tel" autocomplete="tel" placeholder="Include country code"></div>
             </div>
 
             <h3 class="h5 mt-4 mb-3"><i class="bi bi-credit-card me-2" style="color:var(--accent)"></i>Payment Method</h3>
             <label class="pay-method glass-soft selected">
-              <input type="radio" name="payMethod" checked> <i class="bi bi-credit-card-2-front"></i> Credit / Debit Card
+              <input type="radio" name="payMethod" value="COD" checked> <i class="bi bi-cash-coin"></i> Cash on Delivery
             </label>
-            <div class="row g-3 mb-3" id="cardFields">
-              <div class="col-12 form-field mb-0"><label class="form-label-glass">Card Number</label><input class="form-control-glass" type="text" placeholder="4242 4242 4242 4242"></div>
-              <div class="col-md-6 form-field mb-0"><label class="form-label-glass">Expiry</label><input class="form-control-glass" type="text" placeholder="MM / YY"></div>
-              <div class="col-md-6 form-field mb-0"><label class="form-label-glass">CVC</label><input class="form-control-glass" type="text" placeholder="123"></div>
-            </div>
-            <label class="pay-method glass-soft"><input type="radio" name="payMethod"> <i class="bi bi-paypal"></i> PayPal</label>
-            <label class="pay-method glass-soft"><input type="radio" name="payMethod"> <i class="bi bi-cash-coin"></i> Cash on Delivery</label>
+            <p class="small mb-0">Online card and PayPal payments are not available yet. No card details are collected here.</p>
 
-            <button type="submit" class="btn-lume-primary w-100 mt-4"><i class="bi bi-lock"></i> Place Order</button>
+            <button type="submit" class="btn-lume-primary w-100 mt-4"><i class="bi bi-bag-check"></i> Place Order</button>
           </form>
         </div>
       </div>
@@ -84,7 +78,9 @@
           <div id="checkoutItems" style="max-height:260px; overflow-y:auto; margin-bottom:1rem;"></div>
           <div class="row-line"><span>Subtotal</span><span id="coSubtotal">$0.00</span></div>
           <div class="row-line"><span>Shipping</span><span id="coShipping">$0.00</span></div>
+          <div class="row-line d-none" id="coPromoRow"><span id="coPromoLabel">Discount</span><span id="coDiscount">-$0.00</span></div>
           <div class="row-line total"><span>Total</span><span id="coTotal">$0.00</span></div>
+          <p class="currency-note">Prices shown in USD</p>
         </div>
       </div>
     </div>
@@ -94,7 +90,7 @@
       <div class="empty-state glass" style="max-width:560px; margin:0 auto;">
         <i class="bi bi-check-circle" style="color:var(--sage)"></i>
         <h3 class="h4">Order Confirmed</h3>
-        <p>Thank you — your order <strong id="orderNumber" style="color:var(--accent-soft)"></strong> has been placed. A confirmation email is on its way.</p>
+        <p>Your order <strong id="orderNumber" style="color:var(--accent-soft)"></strong> has been recorded. Keep this number for reference.</p>
         <a href="index.html" class="btn-lume-primary">Back to Home</a>
       </div>
     </div>
@@ -119,7 +115,6 @@
     Arbaj Khan
   </a>
 </div></span>
-      <div class="payment-icons"><i class="bi bi-credit-card"></i><i class="bi bi-paypal"></i><i class="bi bi-apple"></i><i class="bi bi-google"></i></div>
     </div>
   </div>
 </footer>
@@ -130,6 +125,7 @@
 <script src="assets/js/lume-api.js"></script>
 <script>
 let checkoutCart = [];
+let checkoutCoupon = null;
 
 async function renderCheckout(){
   checkoutCart = window.LumeAPI.isLoggedIn()
@@ -139,6 +135,7 @@ async function renderCheckout(){
   const hasItems = document.getElementById('checkoutHasItems');
   const emptyState = document.getElementById('checkoutEmptyState');
   if(cart.length === 0){
+    localStorage.removeItem('lume_coupon_code');
     hasItems.classList.add('d-none');
     emptyState.classList.remove('d-none');
     return;
@@ -154,23 +151,32 @@ async function renderCheckout(){
     return `<div class="d-flex align-items-center gap-3 mb-3">
       <div class="cart-item-img"><img src="${p.images?.[0]?.url || p.img || ''}" alt="${p.name}"></div>
       <div class="flex-grow-1"><div class="cart-item-name" style="font-size:0.92rem">${p.name}</div><span class="rating-count">Qty ${item.qty}</span></div>
-      <span class="fw-semibold" style="color:var(--text-primary)">$${(p.price*item.qty).toFixed(2)}</span>
+      <span class="fw-semibold" style="color:var(--text-primary)">${formatMoney(p.price * item.qty)}</span>
     </div>`;
   }).join('');
 
-  const shipping = subtotal >= 75 ? 0 : 8.5;
-  document.getElementById('coSubtotal').textContent = `$${subtotal.toFixed(2)}`;
-  document.getElementById('coShipping').textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
-  document.getElementById('coTotal').textContent = `$${(subtotal+shipping).toFixed(2)}`;
-}
+  const couponCode = localStorage.getItem('lume_coupon_code');
+  checkoutCoupon = null;
+  if(couponCode && window.LumeAPI.isLoggedIn()){
+    try{
+      checkoutCoupon = await window.LumeAPI.validateCoupon(couponCode, subtotal);
+    }catch(error){
+      localStorage.removeItem('lume_coupon_code');
+      showToast(error.message || 'Coupon is no longer valid', 'bi-exclamation-circle');
+    }
+  }else if(couponCode){
+    localStorage.removeItem('lume_coupon_code');
+  }
 
-document.querySelectorAll('input[name="payMethod"]').forEach(radio=>{
-  radio.addEventListener('change', ()=>{
-    document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('selected'));
-    radio.closest('.pay-method').classList.add('selected');
-    document.getElementById('cardFields').style.display = radio.closest('.pay-method').textContent.includes('Card') ? 'flex' : 'none';
-  });
-});
+  const shipping = subtotal >= 75 ? 0 : 8.5;
+  const discount = Number(checkoutCoupon?.discount) || 0;
+  document.getElementById('coSubtotal').textContent = formatMoney(subtotal);
+  document.getElementById('coShipping').textContent = shipping === 0 ? 'Free' : formatMoney(shipping);
+  document.getElementById('coPromoRow').classList.toggle('d-none', !checkoutCoupon);
+  document.getElementById('coPromoLabel').textContent = checkoutCoupon ? `Discount (${checkoutCoupon.code})` : 'Discount';
+  document.getElementById('coDiscount').textContent = formatMoney(-discount);
+  document.getElementById('coTotal').textContent = formatMoney(Math.max(0, subtotal + shipping - discount));
+}
 
 document.getElementById('checkoutForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
@@ -185,13 +191,17 @@ document.getElementById('checkoutForm').addEventListener('submit', async (e)=>{
     city: fields[3]?.value.trim(), state: fields[4]?.value.trim(), zip: fields[5]?.value.trim(),
     country: fields[6]?.value.trim() || 'India', phone: fields[7]?.value.trim(),
   };
-  const paymentText = document.querySelector('input[name="payMethod"]:checked')?.closest('.pay-method')?.textContent || '';
-  const paymentMethod = paymentText.includes('PayPal') ? 'PayPal' : paymentText.includes('Cash') ? 'COD' : 'Card';
+  const paymentMethod = document.querySelector('input[name="payMethod"]:checked')?.value || 'COD';
   const button = e.currentTarget.querySelector('button[type="submit"]');
   try{
     button.disabled = true;
     button.innerHTML = '<i class="bi bi-hourglass-split"></i> Processing...';
-    const order = await window.LumeAPI.placeOrder({ shippingAddress, paymentMethod });
+    const order = await window.LumeAPI.placeOrder({
+      shippingAddress,
+      paymentMethod,
+      couponCode: checkoutCoupon?.code || '',
+    });
+    localStorage.removeItem('lume_coupon_code');
     document.getElementById('orderNumber').textContent = `#${order.orderNumber}`;
     document.getElementById('checkoutHasItems').classList.add('d-none');
     document.getElementById('checkoutConfirmation').classList.remove('d-none');
@@ -202,7 +212,7 @@ document.getElementById('checkoutForm').addEventListener('submit', async (e)=>{
     showToast(error.message || 'Unable to place your order', 'bi-exclamation-circle');
   }finally{
     button.disabled = false;
-    button.innerHTML = '<i class="bi bi-lock"></i> Place Order';
+    button.innerHTML = '<i class="bi bi-bag-check"></i> Place Order';
   }
 });
 

@@ -5,6 +5,15 @@
 
 const LUME_CART_KEY = "lume_cart";
 const LUME_WISH_KEY = "lume_wishlist";
+const LUME_CURRENCY = 'USD';
+const LUME_MONEY_FORMATTER = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: LUME_CURRENCY,
+});
+
+function formatMoney(amount) {
+  return LUME_MONEY_FORMATTER.format(Number(amount) || 0);
+}
 
 /* ---------- Storage helpers ---------- */
 function readStore(key) {
@@ -162,12 +171,14 @@ function productCard(p, extraClass = '') {
       <span class="product-cat">${catLabel(p.cat)}</span>
       <a class="product-name-link" href="product-details.html?id=${p.id}"><h3 class="product-name">${p.name}</h3></a>
       <div class="d-flex align-items-center gap-2">
-        <span class="stars">${starHTML(p.rating)}</span>
-        <span class="rating-count">(${p.reviews})</span>
+        <span class="stock-note ${p.stock ? 'in-stock' : 'out-of-stock'}">
+          <i class="bi ${p.stock ? 'bi-check-circle' : 'bi-x-circle'}"></i>
+          ${p.stock ? 'In stock' : 'Out of stock'}
+        </span>
       </div>
       <div class="price-row">
-        <span class="price-now">$${p.price.toFixed(2)}</span>
-        ${p.old ? `<span class="price-old">$${p.old.toFixed(2)}</span><span class="price-off">-${off}%</span>` : ''}
+        <span class="price-now">${formatMoney(p.price)}</span>
+        ${p.old ? `<span class="price-old">${formatMoney(p.old)}</span><span class="price-off">-${off}%</span>` : ''}
       </div>
     </div>
   </div>`;
@@ -377,7 +388,7 @@ function initLumeChrome() {
           subject: fields[2]?.value.trim(),
           message: fields[3]?.value.trim(),
         });
-        showToast('Message sent — we\'ll reply within 24 hours');
+        showToast('Message submitted');
         contactForm.reset();
       } catch (error) {
         showToast(error.message || 'Unable to send your message', 'bi-exclamation-circle');
@@ -464,13 +475,13 @@ function initChatbot() {
   /* Bot response logic */
   function getBotResponse(msg) {
     const responses = {
-      'shipping': 'We offer free shipping on all orders over $75! Delivery typically takes 5-7 business days.',
-      'return': 'We accept returns within 30 days of purchase, no questions asked. Just contact our support team.',
-      'price': 'Our products range from $50 to $400+ depending on the item. Check our shop for full pricing.',
-      'product': 'We offer handcrafted lighting, home decor, fragrances, and lifestyle accessories. Visit our shop to explore!',
+      'shipping': 'Shipping is free for orders of $75 USD or more. Orders below that have a flat $8.50 shipping charge.',
+      'return': 'Return terms are not currently published on the site. Please contact the studio before ordering with a return question.',
+      'price': 'Product prices are shown in USD. Check each product page for its current price.',
+      'product': 'Browse lighting, home decor, fragrance, tableware, furniture and accessories in the shop.',
       'new': 'Check out our New Arrivals section! We regularly add unique, carefully curated pieces to our collection.',
-      'sale': 'Our seasonal sales offer up to 40% off select lighting items. Subscribe to our newsletter for exclusive deals!',
-      'support': 'Our customer support team is available 24/7. Email us at hello@lume-studio.com or call +91 98765 43210.',
+      'sale': 'Current sale prices are shown on the product cards and product pages.',
+      'support': 'Use the Contact page to send a question to the studio. This assistant provides general store information.',
       'account': 'You can manage your account, order history, and preferences from the Account page. Click the person icon in the navbar!',
       'wishlist': 'Save your favorite items to your wishlist by clicking the heart icon. Your wishlist is saved locally on your device.',
       'cart': 'Manage your shopping cart from the cart icon in the navbar or the Cart page. Review items before checkout.',
@@ -493,7 +504,7 @@ function initChatbot() {
     }
 
     /* Fallback response */
-    return 'That\'s a great question! For more detailed assistance, please contact our support team at hello@lume-studio.com or call +91 98765 43210. We\'re here 24/7!';
+    return 'For product-specific, order or policy questions, please use the Contact page so the studio can review your message.';
   }
 
   /* Helper to escape HTML */
