@@ -121,7 +121,7 @@
       <div class="col-lg-4">
         <div class="footer-heading">Visit the Studio</div>
         <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
-        <p class="small"><i class="bi bi-envelope me-2"></i>hello@lume-studio.com</p>
+        <p class="small"><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer">WhatsApp: +91 81075 95781</a></p>
       </div>
     </div>
     <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
@@ -178,7 +178,7 @@ async function renderCart(){
     <tr data-id="${productId}">
       <td data-label="Product">
         <div class="cart-item-info">
-          <a href="product-details.html?id=${p._id || p.id}" class="cart-item-img"><img src="${p.images?.[0]?.url || p.image || `https://picsum.photos/seed/${p.img}/160/160`}" alt="${p.name}"></a>
+          <a href="product-details.html?id=${p._id || p.id}" class="cart-item-img"><img src="${getProductImage(p)}" alt="${p.name}" width="76" height="76" loading="lazy" decoding="async"></a>
           <div><a href="product-details.html?id=${p._id || p.id}" class="product-name-link"><div class="cart-item-name">${p.name}</div></a><span class="product-cat">${catLabel(p.cat || p.category?.slug || '')}</span></div>
         </div>
       </td>

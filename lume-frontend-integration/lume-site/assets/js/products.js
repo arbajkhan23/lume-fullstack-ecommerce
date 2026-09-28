@@ -13,6 +13,66 @@ let CATEGORIES = [
   },
 ];
 
+const PRODUCT_PHOTO_BY_NAME = {
+  "aalto table lamp": "photo-1507473885765-e6ed057f782c",
+  "terra ceramic vase": "photo-1578500494198-246f612d3b3d",
+  "linen weave throw": "photo-1600210492486-724fe5c67fb0",
+  "amber glass candle": "photo-1603006905003-be475563bc59",
+  "oslo floor lamp": "photo-1513506003901-1e6a229e2d15",
+  "stoneware bowl set": "photo-1578749556568-bc2c40e68b61",
+  "woven wall hanging": "photo-1600210492486-724fe5c67fb0",
+  "brass bookend pair": "photo-1507842217343-583bb7270b66",
+  "nordic pendant light": "photo-1507473885765-e6ed057f782c",
+  "sage ceramic planter": "photo-1485955900006-10f4d324d411",
+  "cedar & moss candle": "photo-1603006905003-be475563bc59",
+  "woven storage basket": "photo-1600210492486-724fe5c67fb0",
+  "marble coaster set": "photo-1578749556568-bc2c40e68b61",
+  "rattan accent chair": "photo-1598300056393-4aac492f4344",
+  "halo arc floor lamp": "photo-1513506003901-1e6a229e2d15",
+  "clay fruit bowl": "photo-1578749556568-bc2c40e68b61",
+  "sandalwood diffuser": "photo-1608571423902-eed4a5ad8108",
+  "leather catch-all tray": "photo-1622560480654-d96214fdc887",
+  "mini dome table lamp": "photo-1507473885765-e6ed057f782c",
+  "textured linen cushion": "photo-1600210492486-724fe5c67fb0",
+  "rose & oud candle": "photo-1603006905003-be475563bc59",
+  "woven key tray": "photo-1600210492486-724fe5c67fb0",
+  "oat bouclé armchair": "photo-1598300056393-4aac492f4344",
+  "fluted glass tumblers": "photo-1513558161293-cdaf765edfd4",
+};
+
+const CATEGORY_PHOTO_BY_SLUG = {
+  lighting: "photo-1507473885765-e6ed057f782c",
+  "home-decor": "photo-1578500494198-246f612d3b3d",
+  decor: "photo-1578500494198-246f612d3b3d",
+  fragrance: "photo-1603006905003-be475563bc59",
+  accessories: "photo-1600210492486-724fe5c67fb0",
+  "new-lighting": "photo-1600210492486-724fe5c67fb0",
+  tableware: "photo-1578749556568-bc2c40e68b61",
+  furniture: "photo-1598300056393-4aac492f4344",
+};
+
+function unsplashImage(photoId, width, height) {
+  return `https://images.unsplash.com/${photoId}?auto=format&fit=crop&w=${width}&h=${height}&q=85`;
+}
+
+function getProductImage(product) {
+  const source = product?.image || product?.images?.[0]?.url || product?.img || "";
+  const isSeedImage = /^lume-/i.test(source) || /picsum\.photos\/seed\/lume-/i.test(source);
+  if (source && !isSeedImage) return source;
+
+  const photoId = PRODUCT_PHOTO_BY_NAME[String(product?.name || "").toLowerCase()]
+    || CATEGORY_PHOTO_BY_SLUG[product?.cat || product?.category?.slug];
+  return photoId ? unsplashImage(photoId, 700, 875) : source;
+}
+
+function getCategoryImage(category) {
+  const source = category?.image || category?.img || "";
+  if (source && !/picsum\.photos/i.test(source)) return source;
+
+  const photoId = CATEGORY_PHOTO_BY_SLUG[category?.slug];
+  return photoId ? unsplashImage(photoId, 600, 600) : source;
+}
+
 function catLabel(slug) {
   const c = CATEGORIES.find((c) => String(c.slug) === String(slug));
 
@@ -39,7 +99,7 @@ async function loadRemoteCategories() {
 
     CATEGORIES = result.data.map((category) => ({
       slug: category.slug,
-      name: category.name,
+      name: category.slug === "new-lighting" ? "Accessories" : category.name,
 
       count: `${category.productCount || 0} items`,
 
@@ -72,7 +132,18 @@ async function loadRemoteCategories() {
 loadRemoteCategories();
 function catLabel(slug) {
   const c = CATEGORIES.find((c) => c.slug === slug);
-  return c ? c.name : slug;
+  if (c) return c.name;
+  const labels = {
+    decor: "Decor",
+    "home-decor": "Home Decor",
+    accessories: "Accessories",
+    "new-lighting": "Accessories",
+    lighting: "Lighting",
+    tableware: "Tableware",
+    fragrance: "Fragrance",
+    furniture: "Furniture",
+  };
+  return labels[slug] || slug;
 }
 
 /* Each product: id, name, cat (slug), price, old (or null), rating, reviews,
@@ -554,21 +625,34 @@ function applyRemoteProducts(products) {
   PRODUCTS.splice(
     0,
     PRODUCTS.length,
-    ...products.map((product) => ({
-      id: String(product._id),
-      name: product.name,
-      cat: product.category?.slug || product.category?.name || "",
-      price: Number(product.price) || 0,
-      old: product.oldPrice == null ? null : Number(product.oldPrice),
-      rating: Number(product.rating) || 0,
-      reviews: Number(product.numReviews) || 0,
-      img: product.images?.[0]?.url || "",
-      image: product.images?.[0]?.url || "",
-      tag: product.tag || null,
-      stock: Number(product.stock) > 0,
-      desc: product.description || "",
-      features: product.features || [],
-    })),
+    ...products.map((product) => {
+      const normalizedProduct = {
+        name: product.name,
+        cat: product.category?.slug || product.category?.name || "",
+        image: product.images?.[0]?.url || "",
+      };
+      const image = getProductImage(normalizedProduct);
+      return {
+        id: String(product._id),
+        name: product.name,
+        cat: normalizedProduct.cat,
+        price: Number(product.price) || 0,
+        old: product.oldPrice == null ? null : Number(product.oldPrice),
+        rating: Number(product.rating) || 0,
+        reviews: Number(product.numReviews) || 0,
+        img: image,
+        image,
+        images: Array.isArray(product.images)
+          ? product.images.map((galleryImage, index) => index === 0 ? { ...galleryImage, url: image } : galleryImage)
+          : [],
+        tag: product.tag || null,
+        stock: Number(product.stock) > 0,
+        isFeatured: Boolean(product.isFeatured),
+        isTrending: Boolean(product.isTrending),
+        desc: product.description || "",
+        features: product.features || [],
+      };
+    }),
   );
 }
 

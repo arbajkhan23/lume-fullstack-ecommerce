@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUMÉ — Premium Home &amp; Living</title>
-<meta name="description" content="Considered home and living pieces, with clear USD pricing and shipping shown up front.">
+<title>LUMÉ — Considered Objects for Everyday Light</title>
+<meta name="description" content="LUMÉ is a premium home, lighting and lifestyle store — considered objects, honestly made.">
 <meta name="author" content="Arbaj Khan">
 <meta name="developer" content="Arbaj Khan">
 <meta name="designer" content="Arbaj Khan">
@@ -14,19 +14,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="assets/css/style.css">
-<style>
-/* Homepage only: a more editorial expression of LUMÉ's existing dark, warm palette. */
-.home-page{--text-secondary:#c2c0b7;--text-muted:#a09e94;--accent:#c9a779;--accent-soft:#ead3ae;--glass-border:rgba(239,230,211,.14);--glass-border-strong:rgba(239,230,211,.24);--glass-bg:rgba(255,255,255,.065);--glass-bg-strong:rgba(35,39,34,.88);--shadow-glass:0 20px 55px rgba(0,0,0,.28)}
-.home-page .announce-bar{background:#272a24;border-color:rgba(239,230,211,.11);padding:.62rem 2.8rem}.home-page .announce-track{height:1.25rem}.home-page .announce-item{font-size:.78rem;letter-spacing:.035em}.home-page .announce-item strong{color:#ead3ae}
-.home-page .lume-nav{background:rgba(18,23,19,.94);border-color:rgba(239,230,211,.1);padding:.82rem 0}.home-page .lume-nav.scrolled{background:rgba(18,23,19,.98);padding:.62rem 0}.home-page .brand{font-size:1.65rem;letter-spacing:.045em}.home-page .nav-links a{font-size:.84rem;letter-spacing:.025em}.home-page .icon-btn{background:rgba(255,255,255,.035);border-color:rgba(239,230,211,.15)}.home-page .icon-btn:hover{background:rgba(255,255,255,.09)}.home-page .nav-search input{border-radius:999px}
-.home-page .hero{padding:5.6rem 0 5rem;background:radial-gradient(ellipse at 82% 42%,rgba(201,167,121,.12),transparent 38%),linear-gradient(135deg,#111711,#1a1c17 70%,#211f18);border-bottom:1px solid rgba(239,230,211,.08)}.home-page .hero h1{font-size:clamp(3.1rem,5.6vw,5.15rem);line-height:1.01;letter-spacing:-.035em;max-width:650px}.home-page .hero .eyebrow{letter-spacing:.19em}.home-page .hero .lede{max-width:430px;color:#d1cfc6;font-size:1rem;line-height:1.8}.home-page .hero .italic-accent{color:#e3c89d}.home-page .hero-visual{min-height:490px}.home-page .hero-card-main{width:82%;border:1px solid rgba(255,255,255,.25);border-radius:4px;box-shadow:0 28px 80px rgba(0,0,0,.38)}.home-page .hero-card-main img{height:510px;object-position:center;filter:saturate(.84)}.home-page .hero-card-main:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.3));pointer-events:none}.home-page .hero-badge-top{background:rgba(29,32,27,.82);border-color:rgba(239,230,211,.2);border-radius:2px;color:#f1ebdf}.home-page .hero-float-card{left:-.35rem;bottom:1.35rem;width:min(300px,76%);padding:1.25rem;background:rgba(28,31,26,.94);border:1px solid rgba(239,230,211,.2);border-radius:3px;box-shadow:0 18px 44px rgba(0,0,0,.32)}.home-page .hero-float-card .hf-title{font-family:'Fraunces',serif;font-size:1.1rem}.home-page .hero-banner-subtitle{color:#c7c4b9}.home-page .hero-card-link{color:#ead3ae}.home-page .hero-category-links{gap:.55rem}.home-page .hero-category-links span{margin-right:.25rem;letter-spacing:.13em}.home-page .hero-category-links a{padding:.45rem .75rem;border:1px solid rgba(239,230,211,.17);border-radius:999px;color:#dfd9cd;font-size:.76rem;transition:background .2s,border-color .2s}.home-page .hero-category-links a:hover{background:rgba(255,255,255,.08);border-color:#c9a779;color:#fff}
-.home-page .section{padding:4.8rem 0}.home-page .section-head{margin-bottom:2rem}.home-page .section-head h2{font-size:clamp(1.9rem,3.1vw,2.5rem);letter-spacing:-.025em}.home-page .eyebrow{letter-spacing:.16em}.home-page .cat-card,.home-page .product-card,.home-page .why-card,.home-page .newsletter-panel{border-color:rgba(239,230,211,.12);background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:0 12px 35px rgba(0,0,0,.16)}.home-page .cat-card{border-radius:5px;padding:.7rem}.home-page .cat-img-wrap{border-radius:3px;aspect-ratio:1.18/1}.home-page .cat-name{margin:.1rem 0 .2rem;font-size:1.12rem}.home-page .cat-count{font-size:.72rem}.home-page .product-card{border-radius:4px}.home-page .product-img-wrap{background:#242820}.home-page .product-img-wrap>a{display:block;width:100%;height:100%}.home-page .product-body{padding:1rem 1rem 1.1rem}.home-page .product-cat{letter-spacing:.12em;font-size:.65rem}.home-page .product-name{line-height:1.35;font-size:1.08rem}.home-page .stock-note{font-size:.7rem}.home-page .rating-count{font-size:.72rem}.home-page .price-row{gap:.45rem;flex-wrap:wrap}.home-page .price-now{font-size:1.2rem}.home-page .wish-btn{background:rgba(19,23,19,.75);border-color:rgba(239,230,211,.2)}.home-page .quick-add .add-cart-btn{border-radius:2px;background:rgba(20,24,19,.92);border-color:rgba(239,230,211,.3);color:#f8f4eb;letter-spacing:.025em}.home-page .quick-add .add-cart-btn:hover{background:#c9a779;color:#171712;border-color:#c9a779}.home-page .deal-banner{border:1px solid rgba(239,230,211,.15);border-radius:4px;background:linear-gradient(112deg,#282a23,#373329);box-shadow:0 22px 55px rgba(0,0,0,.2)}.home-page .deal-banner h2{max-width:650px}.home-page .filter-pill{font:inherit;font-size:.8rem}.home-page button.filter-pill{cursor:pointer}.home-page .filter-pill.active{background:#c9a779;color:#171712;border-color:#c9a779}.home-page .why-card{border-radius:4px;padding:1.7rem 1.2rem}.home-page .why-card h4{font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600}.home-page .why-card p{color:#c2c0b7}.home-page .newsletter-panel{border-radius:4px;padding:3.3rem 2rem}.home-page .btn-lume-primary{background:#c9a779;border-color:#c9a779;color:#171712;border-radius:3px}.home-page .btn-lume-primary:hover{background:#ead3ae;border-color:#ead3ae}.home-page .btn-lume-ghost{border-radius:3px}.home-page :focus-visible{outline-color:#ead3ae}.home-page .product-fade{transition:opacity .25s,transform .25s}.home-page .product-hide{display:none!important}
-@media(max-width:991.98px){.home-page .hero{padding:4rem 0 3.5rem;background-position:center}.home-page .hero-visual{min-height:390px}.home-page .hero-card-main{position:relative;width:100%;right:auto}.home-page .hero-card-main img{height:390px}.home-page .hero-float-card{position:relative;left:auto;bottom:auto;margin:-2.25rem 1rem 0 auto}.home-page .hero-badge-top{display:flex;top:.8rem;right:.8rem}.home-page .hero-category-links{justify-content:center}}
-@media(max-width:575.98px){.home-page .announce-bar{padding:.55rem 2rem .55rem .6rem}.home-page .announce-item{font-size:.7rem}.home-page .announce-close{right:.55rem}.home-page .hero{padding:3rem 0 2.8rem;background-image:radial-gradient(ellipse at 50% 35%,rgba(201,167,121,.11),transparent 55%),linear-gradient(160deg,#111711,#1a1c17 75%,#211f18);background-position:center}.home-page .hero h1{font-size:clamp(2.55rem,11vw,3.65rem);overflow-wrap:normal}.home-page .hero .lede{font-size:.93rem}.home-page .hero .d-flex.flex-wrap.gap-3{gap:.65rem!important}.home-page .hero .btn-lume-primary,.home-page .hero .btn-lume-ghost{padding:.7rem 1rem;font-size:.82rem}.home-page .hero-category-links{gap:.4rem}.home-page .hero-category-links span{width:100%;margin-bottom:.15rem}.home-page .hero-category-links a{padding:.4rem .6rem;font-size:.7rem}.home-page .hero-visual{min-height:0;margin-top:1.2rem}.home-page .hero-card-main img{height:310px}.home-page .hero-float-card{width:86%;padding:1rem;margin-top:-1.8rem}.home-page .hero-badge-top{display:none}.home-page .section{padding:3.4rem 0}.home-page .cat-img-wrap{aspect-ratio:1/1}.home-page .cat-card{padding:.55rem}.home-page .cat-name{font-size:.98rem}.home-page .product-body{padding:.75rem}.home-page .product-name{font-size:.92rem}.home-page .stock-note{font-size:.65rem}.home-page .price-now{font-size:1.02rem}.home-page .price-old{font-size:.72rem}.home-page .price-off{font-size:.66rem}.home-page .quick-add .add-cart-btn{font-size:.72rem;padding:.48rem .2rem}.home-page .arrivals-slider{padding:0}.home-page .scroll-row{padding:0 .2rem .8rem;gap:.8rem}.home-page .scroll-row .product-card{min-width:min(72vw,260px)}.home-page .slider-control.prev{left:-.55rem}.home-page .slider-control.next{right:-.55rem}.home-page .filter-pills{gap:.4rem}.home-page .filter-pill{padding:.42rem .75rem;font-size:.74rem}.home-page .deal-banner{padding:1.6rem 1.15rem}.home-page .newsletter-panel{padding:2.2rem 1rem}.home-page .chatbot-widget{width:calc(100vw - 1rem);height:min(520px,calc(100dvh - 7rem));right:.5rem;bottom:.5rem}}
-@media(max-width:360px){.home-page #chatbotToggleBtn{display:none!important}.home-page .hero h1{font-size:2.45rem}.home-page .hero-stats{gap:.75rem}.home-page .hero-stats .stat-num{font-size:1.25rem}}
-</style>
 </head>
-<body class="home-page">
+<body>
 
 <div class="ambient"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
 <div class="grain"></div>
@@ -34,15 +23,15 @@
 <!-- ============ ANNOUNCEMENT BAR ============ -->
 <div class="announce-bar" id="announceBar">
   <div class="container announce-track">
-    <div class="announce-item active">Free shipping over <strong>$75 USD</strong> | <strong>$8.50 USD</strong> below.</div>
-    <div class="announce-item">Explore the new lighting collection and considered home objects.</div>
-    <div class="announce-item">Explore newly added pieces for the home.</div>
+    <div class="announce-item active">Free shipping over <strong>$75 USD</strong>; <strong>$8.50 USD</strong> below.</div>
+    <div class="announce-item">Cash on Delivery is available at checkout.</div>
+    <div class="announce-item">Browse new lighting and considered home objects.</div>
   </div>
   <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
 </div>
 
 <!-- ============ NAVBAR ============ -->
-<nav class="lume-nav" id="mainNav" aria-label="Main navigation">
+<nav class="lume-nav" id="mainNav">
   <div class="container d-flex align-items-center justify-content-between">
     <a href="index.html" class="brand">LUM<span class="dot">É</span></a>
     <ul class="nav-links d-none d-lg-flex list-unstyled m-0 align-items-center">
@@ -96,19 +85,22 @@
           <a href="shop.html?filter=new" class="btn-lume-primary">Shop New Arrivals</a>
           <a href="#categories" class="btn-lume-ghost">Explore Collections</a>
         </div>
-        <div class="hero-category-links mt-5 justify-content-center justify-content-lg-start" id="heroCategoryLinks" aria-label="Browse categories"><span>Explore categories</span></div>
+        <div class="d-flex hero-stats mt-5 justify-content-center justify-content-lg-start">
+          <div><span class="stat-num" id="homeProductCount">24</span><div class="stat-label">Objects to explore</div></div>
+          <div><span class="stat-num" id="homeCategoryCount">6</span><div class="stat-label">Collections</div></div>
+          <div><span class="stat-num">USD</span><div class="stat-label">Prices shown in</div></div>
+        </div>
       </div>
       <div class="col-lg-6">
         <div class="hero-visual">
-          <div class="hero-badge-top glass-strong"><i class="bi bi-sparkle"></i> The LUMÉ edit</div>
-          <div class="hero-card-main glass"><img id="heroBannerImage" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85" alt="Warm, considered living room interior"></div>
+          <div class="hero-badge-top glass-strong"><i class="bi bi-stars text-warning"></i> Editor's Pick</div>
+          <div class="hero-card-main glass"><img id="heroBannerImage" src="https://picsum.photos/seed/lume-hero/900/1100" alt="LUMÉ considered home interior"></div>
           <div class="hero-float-card glass-strong">
             <div class="d-flex justify-content-between align-items-start">
-              <span class="hf-title" id="heroBannerTitle">A softer way to come home</span>
-              <i class="bi bi-arrow-up-right" style="color:var(--accent-soft)"></i>
+              <span class="hf-title" id="heroBannerTitle">Aalto Table Lamp</span>
+              <i class="bi bi-heart" style="color:var(--rose)"></i>
             </div>
-            <p class="hero-banner-subtitle mt-2 mb-2" id="heroBannerSubtitle">Considered materials, useful forms, and room to slow down.</p>
-            <a class="hero-card-link" href="shop.html">Explore the collection <i class="bi bi-arrow-right"></i></a>
+            <p class="hero-banner-subtitle mt-2 mb-0" id="heroBannerSubtitle">Considered materials and useful forms for everyday living.</p>
           </div>
         </div>
       </div>
@@ -160,12 +152,13 @@
     <div class="deal-banner glass-strong reveal">
       <div class="row align-items-center g-4">
         <div class="col-lg-7">
-          <span class="eyebrow">Limited Time</span>
+          <span class="eyebrow">The Lighting Edit</span>
           <h2 class="mt-2">Lighting with <span class="italic-accent">a softer point of view.</span></h2>
           <p class="mb-0" style="max-width:460px">Sculptural forms, considered materials and useful light for everyday rooms.</p>
         </div>
         <div class="col-lg-5">
           <div class="d-flex flex-column align-items-center align-items-lg-end gap-3">
+            <p class="small text-lg-end mb-0">Shipping charges are shown before checkout.</p>
             <a href="shop.html?cat=lighting" class="btn-lume-primary">Explore lighting <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
@@ -180,7 +173,13 @@
     <div class="section-head reveal">
       <span class="eyebrow">Right Now</span>
       <h2 class="mt-2 mb-3">Trending Products</h2>
-      <div class="filter-pills" id="filterPills" aria-label="Filter trending products"></div>
+      <div class="filter-pills" id="filterPills">
+        <span class="filter-pill active" data-filter="all">All</span>
+        <span class="filter-pill" data-filter="lighting">Lighting</span>
+        <span class="filter-pill" data-filter="home-decor">Home Decor</span>
+        <span class="filter-pill" data-filter="new-lighting">Accessories</span>
+        <span class="filter-pill" data-filter="fragrance">Fragrance</span>
+      </div>
     </div>
     <div class="row g-4" id="trendingGrid"></div>
   </div>
@@ -199,14 +198,47 @@
   </div>
 </section>
 
+<!-- ============ CUSTOMER REVIEWS ============ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-head text-center reveal"><span class="eyebrow">Testimonials</span><h2 class="mt-2">What Our Customers Say</h2></div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"The lamp is even more beautiful in person. It changed the entire feel of my living room."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=47" alt="Portrait of Amara O."><div><div class="review-name">Amara O.</div><div class="review-role">Jaipur, IN</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+        <p class="review-quote">"Packaging alone felt premium. Shipping was fast and the quality matched the price."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=12" alt="Portrait of Daniel K."><div><div class="review-name">Daniel K.</div><div class="review-role">Austin, US</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"Every piece I've bought looks intentional — nothing feels like filler in my home now."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=32" alt="Portrait of Priya S."><div><div class="review-name">Priya S.</div><div class="review-role">Bengaluru, IN</div></div></div>
+      </div></div>
+      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
+        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="review-quote">"Customer support helped me pick the right size lamp within minutes. Excellent service."</p>
+        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=68" alt="Portrait of Marco L."><div><div class="review-name">Marco L.</div><div class="review-role">Milan, IT</div></div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ NEWSLETTER ============ -->
 <section class="section">
   <div class="container">
     <div class="newsletter-panel glass-strong reveal">
-      <span class="eyebrow">A considered choice</span>
-      <h2 class="mt-2">Need help finding the right piece?</h2>
-      <p class="mx-auto" style="max-width:420px">Tell us what you’re looking for and send a message to the LUMÉ studio.</p>
-      <a href="contact.html" class="btn-lume-primary mt-3">Contact the studio <i class="bi bi-arrow-up-right"></i></a>
+      <span class="eyebrow">Stay in the Light</span>
+      <h2 class="mt-2">Get 10% off your first order</h2>
+      <p class="mx-auto" style="max-width:420px">Join our list for early access to new arrivals, restocks and considered reads on design.</p>
+      <form class="newsletter-form js-newsletter-form">
+        <input type="email" required placeholder="Enter your email address" aria-label="Email address">
+        <button type="submit" class="btn-lume-primary">Subscribe</button>
+      </form>
+      <div class="newsletter-note">No spam. Unsubscribe anytime.</div>
     </div>
   </div>
 </section>
@@ -219,10 +251,18 @@
       <div class="col-lg-4">
         <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
         <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
+        <div class="footer-social mt-3">
+          <a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer" aria-label="Contact LUMÉ on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
       </div>
       <div class="col-6 col-lg-2">
         <div class="footer-heading">Shop</div>
-        <div class="footer-links" id="footerCategoryLinks"></div>
+        <div class="footer-links">
+          <a href="shop.html?cat=lighting">Lighting</a>
+          <a href="shop.html?cat=home-decor">Decor</a>
+          <a href="shop.html?cat=fragrance">Fragrance</a>
+          <a href="shop.html?cat=new-lighting">Accessories</a>
+        </div>
       </div>
       <div class="col-6 col-lg-2">
         <div class="footer-heading">Customer Care</div>
@@ -236,8 +276,7 @@
       <div class="col-lg-4">
         <div class="footer-heading">Visit the Studio</div>
         <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
-        <p class="small mb-1"><i class="bi bi-envelope me-2"></i>hello@lume-studio.com</p>
-        <p class="small"><i class="bi bi-telephone me-2"></i>+91 98765 43210</p>
+        <p class="small"><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer">WhatsApp: +91 81075 95781</a></p>
       </div>
     </div>
     <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
@@ -248,6 +287,7 @@
     Arbaj Khan
   </a>
 </div></span>
+      <div class="payment-icons"><i class="bi bi-cash-coin"></i><span>Cash on Delivery</span></div>
     </div>
   </div>
 </footer>
@@ -278,15 +318,19 @@
 <script>
 function renderHomeProducts(){
   const categories = CATEGORIES.filter(category => category.isActive !== false);
+  const featured = PRODUCTS.filter(product => product.isFeatured);
+  const trending = PRODUCTS.filter(product => product.isTrending);
+  const featuredProducts = (featured.length ? featured : PRODUCTS).slice(0,8);
+  const trendingProducts = (trending.length ? trending : PRODUCTS.slice(14,22)).slice(0,8);
+  const trendingCategories = [...new Set(trendingProducts.map(product => String(product.cat || '')).filter(Boolean))]
+    .map(slug => ({ slug, name: catLabel(slug) }));
+
+  document.getElementById('homeProductCount').textContent = PRODUCTS.length;
+  document.getElementById('homeCategoryCount').textContent = categories.length;
   document.getElementById('categoryGrid').innerHTML = categories.map(catCard).join('');
-  document.getElementById('heroCategoryLinks').innerHTML = '<span>Explore categories</span>' + categories.slice(0,4).map(category => `<a href="shop.html?cat=${encodeURIComponent(category.slug)}">${category.name}</a>`).join('');
-  document.getElementById('footerCategoryLinks').innerHTML = categories.slice(0,5).map(category => `<a href="shop.html?cat=${encodeURIComponent(category.slug)}">${category.name}</a>`).join('');
-  document.getElementById('featuredGrid').innerHTML = PRODUCTS.slice(0,8).map(p => `<div class="col-6 col-md-4 col-lg-3">${productCard(p,'reveal')}</div>`).join('');
-  const arrivals = PRODUCTS.filter(p => p.tag === 'new').slice(0,8);
-  document.getElementById('arrivalsRow').innerHTML = (arrivals.length ? arrivals : PRODUCTS.slice(0,8)).map(p => productCard(p,'reveal')).join('');
-  const trending = PRODUCTS.slice(8,16).length ? PRODUCTS.slice(8,16) : PRODUCTS.slice(0,8);
-  const trendingCategories = categories.filter(category => trending.some(product => String(product.cat) === String(category.slug)));
-  document.getElementById('trendingGrid').innerHTML = trending.map(p => `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`).join('');
+  document.getElementById('featuredGrid').innerHTML = featuredProducts.map(p => `<div class="col-6 col-md-4 col-lg-3">${productCard(p,'reveal')}</div>`).join('');
+  document.getElementById('arrivalsRow').innerHTML = PRODUCTS.filter(p=>p.tag==='new').slice(0,8).map(p => productCard(p,'reveal')).join('');
+  document.getElementById('trendingGrid').innerHTML = trendingProducts.map(p => `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`).join('');
   document.getElementById('filterPills').innerHTML = '<button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>' + trendingCategories.map(category => `<button type="button" class="filter-pill" data-filter="${category.slug}" aria-pressed="false">${category.name}</button>`).join('');
 }
 renderHomeProducts();

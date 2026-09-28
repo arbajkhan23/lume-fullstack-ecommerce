@@ -147,8 +147,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding:0.9rem 0;
 }
 .lume-nav.scrolled{ background:rgba(16,21,18,0.97); padding:0.55rem 0; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
-.brand{ font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600; letter-spacing:0; color:var(--text-primary) !important; }
-.brand .dot{ color:var(--accent); }
+.brand,.footer-brand{ font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; line-height:1; letter-spacing:0; white-space:nowrap; font-kerning:normal; }
+.brand{ color:var(--text-primary) !important; }
+.brand .dot,.footer-brand .dot{ display:inline-block; margin-left:-0.035em; color:var(--accent); }
 .nav-links a{ color:var(--text-secondary); font-size:0.92rem; font-weight:500; padding:0.5rem 0.8rem !important; transition:color .25s var(--ease); position:relative; }
 .nav-links a::after{ content:''; position:absolute; left:1rem; right:1rem; bottom:0.15rem; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
 .nav-links a:hover, .nav-links a.active{ color:var(--text-primary); }
@@ -582,7 +583,6 @@ a.product-name-link:hover .product-name{ color:var(--accent-soft); }
    Footer
    ========================================================================== */
 footer{ border-top:1px solid var(--glass-border); padding:4rem 0 1.6rem; margin-top:2rem; }
-.footer-brand{ font-family:'Fraunces',serif; font-size:1.4rem; }
 .footer-heading{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0; color:var(--text-primary); font-weight:600; margin-bottom:1.1rem; }
 .footer-links a{ color:var(--text-secondary); font-size:0.88rem; display:block; margin-bottom:0.65rem; transition:color .2s var(--ease); }
 .footer-links a:hover{ color:var(--accent-soft); }

@@ -198,7 +198,7 @@ async function renderCheckout(){
     if(!p) return '';
     subtotal += p.price * item.qty;
     return `<div class="d-flex align-items-center gap-3 mb-3">
-      <div class="cart-item-img"><img src="${p.images?.[0]?.url || p.img || ''}" alt=""></div>
+      <div class="cart-item-img"><img src="${getProductImage(p)}" alt="" width="76" height="76" loading="lazy" decoding="async"></div>
       <div class="flex-grow-1"><div class="cart-item-name" style="font-size:0.92rem">${p.name}</div><span class="rating-count">Qty ${item.qty}</span></div>
       <span class="fw-semibold" style="color:var(--text-primary)">${formatMoney(p.price * item.qty)}</span>
     </div>`;

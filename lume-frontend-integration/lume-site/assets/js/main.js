@@ -153,13 +153,14 @@ function productCard(p, extraClass = '') {
   const off = p.old ? Math.round(100 - (p.price / p.old * 100)) : null;
   const wished = isWishlisted(p.id) ? 'active' : '';
   const disabled = p.stock ? '' : 'disabled';
+  const image = getProductImage(p);
   return `
   <div class="product-card glass ${extraClass}" data-cat="${p.cat}" data-id="${p.id}">
     <div class="product-img-wrap">
       ${tagHTML(p)}
       <button class="wish-btn ${wished}" aria-label="Toggle wishlist" onclick="handleWishClick(event, '${p.id}')"><i class="bi bi-heart"></i></button>
       <a href="product-details.html?id=${p.id}">
-        <img src="${p.img?.startsWith('http') ? p.img : `https://picsum.photos/seed/${p.img}/500/620`}" alt="${p.name}, ${catLabel(p.cat)}" loading="lazy">
+        <img src="${image}" alt="${p.name}, ${catLabel(p.cat)}" width="700" height="875" loading="lazy" decoding="async">
       </a>
       <div class="quick-add">
         <button class="add-cart-btn" ${disabled} onclick="handleAddClick(event, '${p.id}', this)">
@@ -185,10 +186,7 @@ function productCard(p, extraClass = '') {
 }
 
 function catCard(c) {
-  const image =
-    c.image ||
-    c.img ||
-    "https://picsum.photos/seed/lume-category/300/300";
+  const image = getCategoryImage(c);
 
   return `
     <div class="col-6 col-md-4 col-lg-2">
@@ -200,7 +198,10 @@ function catCard(c) {
           <img
             src="${image}"
             alt="${c.name} category"
+            width="600"
+            height="600"
             loading="lazy"
+            decoding="async"
           >
         </div>
 
@@ -475,7 +476,7 @@ function initChatbot() {
   /* Bot response logic */
   function getBotResponse(msg) {
     const responses = {
-      'shipping': 'Shipping is free for orders of $75 USD or more. Orders below that have a flat $8.50 shipping charge.',
+      'shipping': 'Shipping is free for orders of $75 USD or more. Orders below that have a flat $8.50 USD shipping charge.',
       'return': 'Return terms are not currently published on the site. Please contact the studio before ordering with a return question.',
       'price': 'Product prices are shown in USD. Check each product page for its current price.',
       'product': 'Browse lighting, home decor, fragrance, tableware, furniture and accessories in the shop.',

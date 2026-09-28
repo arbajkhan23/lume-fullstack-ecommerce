@@ -136,7 +136,7 @@
           <a href="shop.html?cat=lighting">Lighting</a>
           <a href="shop.html?cat=home-decor">Decor</a>
           <a href="shop.html?cat=fragrance">Fragrance</a>
-          <a href="shop.html?cat=accessories">Accessories</a>
+          <a href="shop.html?cat=new-lighting">Accessories</a>
         </div>
       </div>
       <div class="col-6 col-lg-2">
@@ -151,8 +151,7 @@
       <div class="col-lg-4">
         <div class="footer-heading">Visit the Studio</div>
         <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
-        <p class="small mb-1"><i class="bi bi-envelope me-2"></i>hello@lume-studio.com</p>
-        <p class="small"><i class="bi bi-telephone me-2"></i>+91 98765 43210</p>
+        <p class="small"><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer">WhatsApp: +91 81075 95781</a></p>
       </div>
     </div>
     <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
@@ -179,9 +178,22 @@ let currentPage = 1;
 
 const params = new URLSearchParams(window.location.search);
 const catFiltersEl = document.getElementById('catFilters');
-catFiltersEl.innerHTML = CATEGORIES.map(c => `
-  <label class="form-check-glass"><input type="checkbox" class="cat-check" value="${c.slug}" ${params.get('cat')===c.slug ? 'checked' : ''}> ${c.name}</label>
-`).join('');
+const categorySlugAliases = { accessories: 'new-lighting', decor: 'home-decor' };
+function categorySlugMatches(first, second){
+  return first === second || categorySlugAliases[first] === second || categorySlugAliases[second] === first;
+}
+function renderCategoryFilters(){
+  const selectedCats = new Set(Array.from(document.querySelectorAll('.cat-check:checked')).map(input => input.value));
+  catFiltersEl.innerHTML = CATEGORIES.filter(category => category.isActive !== false).map(category => `
+    <label class="form-check-glass"><input type="checkbox" class="cat-check" value="${category.slug}" ${[...selectedCats].some(slug => categorySlugMatches(slug, category.slug)) || categorySlugMatches(params.get('cat') || '', category.slug) ? 'checked' : ''}> ${category.name}</label>
+  `).join('');
+}
+renderCategoryFilters();
+document.addEventListener('lume:categoriesReady', ()=>{
+  renderCategoryFilters();
+  currentPage = 1;
+  renderShop();
+});
 
 if(params.get('filter') === 'new') document.getElementById('fNew').checked = true;
 if(params.get('filter') === 'sale') document.getElementById('fSale').checked = true;
@@ -195,12 +207,12 @@ function getFilteredProducts(){
   const maxPrice = Number(document.getElementById('priceRange').value);
 
   return PRODUCTS.filter(p=>{
-    if(checkedCats.length && !checkedCats.includes(p.cat)) return false;
+    if(checkedCats.length && !checkedCats.some(category => categorySlugMatches(category, p.cat))) return false;
     if(wantNew && p.tag !== 'new') return false;
     if(wantSale && p.tag !== 'sale') return false;
     if(wantStock && !p.stock) return false;
     if(p.price > maxPrice) return false;
-    if(searchQuery && !p.name.toLowerCase().includes(searchQuery)) return false;
+    if(searchQuery && !`${p.name} ${p.desc || ''}`.toLowerCase().includes(searchQuery)) return false;
     return true;
   });
 }
@@ -251,7 +263,7 @@ document.getElementById('priceRange').addEventListener('input', (e)=>{
 });
 
 ['change','input'].forEach(evt=>{
-  document.querySelectorAll('#catFilters input, #fNew, #fSale, #fStock, #priceRange, #sortSelect').forEach(el=>{
+  document.querySelectorAll('#fNew, #fSale, #fStock, #priceRange, #sortSelect').forEach(el=>{
     el.addEventListener(evt, ()=>{ currentPage = 1; renderShop(); });
   });
 });
@@ -277,10 +289,17 @@ function clearAllFilters(){
 document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
 document.getElementById('emptyClearBtn').addEventListener('click', clearAllFilters);
 
+catFiltersEl.addEventListener('change', ()=>{ currentPage = 1; renderShop(); });
+
 function onWishlistChanged(){
   document.querySelectorAll('.product-card').forEach(card=>{
-    const id = Number(card.dataset.id);
-    card.querySelector('.wish-btn')?.classList.toggle('active', isWishlisted(id));
+    const id = String(card.dataset.id);
+    const button = card.querySelector('.wish-btn');
+    const active = isWishlisted(id);
+    button?.classList.toggle('active', active);
+    button?.setAttribute('aria-pressed', String(active));
+    button?.querySelector('i')?.classList.toggle('bi-heart-fill', active);
+    button?.querySelector('i')?.classList.toggle('bi-heart', !active);
   });
 }
 
