@@ -201,29 +201,8 @@
 <!-- ============ CUSTOMER REVIEWS ============ -->
 <section class="section" id="reviews">
   <div class="container">
-    <div class="section-head text-center reveal"><span class="eyebrow">Testimonials</span><h2 class="mt-2">What Our Customers Say</h2></div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
-        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-        <p class="review-quote">"The lamp is even more beautiful in person. It changed the entire feel of my living room."</p>
-        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=47" alt="Portrait of Amara O."><div><div class="review-name">Amara O.</div><div class="review-role">Jaipur, IN</div></div></div>
-      </div></div>
-      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
-        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
-        <p class="review-quote">"Packaging alone felt premium. Shipping was fast and the quality matched the price."</p>
-        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=12" alt="Portrait of Daniel K."><div><div class="review-name">Daniel K.</div><div class="review-role">Austin, US</div></div></div>
-      </div></div>
-      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
-        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-        <p class="review-quote">"Every piece I've bought looks intentional — nothing feels like filler in my home now."</p>
-        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=32" alt="Portrait of Priya S."><div><div class="review-name">Priya S.</div><div class="review-role">Bengaluru, IN</div></div></div>
-      </div></div>
-      <div class="col-md-6 col-lg-3"><div class="review-card glass reveal">
-        <div class="stars mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-        <p class="review-quote">"Customer support helped me pick the right size lamp within minutes. Excellent service."</p>
-        <div class="review-person"><img class="review-avatar" src="https://i.pravatar.cc/80?img=68" alt="Portrait of Marco L."><div><div class="review-name">Marco L.</div><div class="review-role">Milan, IT</div></div></div>
-      </div></div>
-    </div>
+    <div class="section-head text-center reveal"><span class="eyebrow">Customer Reviews</span><h2 class="mt-2">What Our Customers Say</h2></div>
+    <div class="row g-4" id="customerReviewGrid"><div class="col-12"><p class="small text-center mb-0">No published customer reviews yet.</p></div></div>
   </div>
 </section>
 
@@ -232,13 +211,13 @@
   <div class="container">
     <div class="newsletter-panel glass-strong reveal">
       <span class="eyebrow">Stay in the Light</span>
-      <h2 class="mt-2">Get 10% off your first order</h2>
-      <p class="mx-auto" style="max-width:420px">Join our list for early access to new arrivals, restocks and considered reads on design.</p>
+      <h2 class="mt-2">Request studio updates</h2>
+      <p class="mx-auto" style="max-width:460px">Ask the LUMÉ studio to contact you about new arrivals and considered reads on design. Submitting sends an update request to the studio for review.</p>
       <form class="newsletter-form js-newsletter-form">
         <input type="email" required placeholder="Enter your email address" aria-label="Email address">
-        <button type="submit" class="btn-lume-primary">Subscribe</button>
+        <button type="submit" class="btn-lume-primary">Request updates</button>
       </form>
-      <div class="newsletter-note">No spam. Unsubscribe anytime.</div>
+      <div class="newsletter-note" role="status">Your request will be sent to the studio for review.</div>
     </div>
   </div>
 </section>
@@ -332,6 +311,56 @@ function renderHomeProducts(){
   document.getElementById('arrivalsRow').innerHTML = PRODUCTS.filter(p=>p.tag==='new').slice(0,8).map(p => productCard(p,'reveal')).join('');
   document.getElementById('trendingGrid').innerHTML = trendingProducts.map(p => `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`).join('');
   document.getElementById('filterPills').innerHTML = '<button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>' + trendingCategories.map(category => `<button type="button" class="filter-pill" data-filter="${category.slug}" aria-pressed="false">${category.name}</button>`).join('');
+  renderHomeReviews();
+}
+
+function renderHomeReviews(){
+  const grid = document.getElementById('customerReviewGrid');
+  if(!grid) return;
+
+  const reviews = PRODUCTS.flatMap(product => (product.customerReviews || [])
+    .filter(review => review.comment && review.name)
+    .map(review => ({ ...review, productName: product.name })))
+    .slice(0,4);
+
+  grid.replaceChildren();
+  if(!reviews.length){
+    const emptyColumn = document.createElement('div');
+    emptyColumn.className = 'col-12';
+    const emptyMessage = document.createElement('p');
+    emptyMessage.className = 'small text-center mb-0';
+    emptyMessage.textContent = 'No published customer reviews yet.';
+    emptyColumn.appendChild(emptyMessage);
+    grid.appendChild(emptyColumn);
+    return;
+  }
+
+  reviews.forEach(review => {
+    const column = document.createElement('div');
+    column.className = 'col-md-6 col-lg-3';
+    const card = document.createElement('div');
+    card.className = 'review-card glass reveal in';
+    const rating = document.createElement('div');
+    rating.className = 'stars mb-2';
+    rating.innerHTML = starHTML(review.rating);
+    const quote = document.createElement('p');
+    quote.className = 'review-quote';
+    quote.textContent = `“${review.comment}”`;
+    const person = document.createElement('div');
+    person.className = 'review-person';
+    const details = document.createElement('div');
+    const name = document.createElement('div');
+    name.className = 'review-name';
+    name.textContent = review.name;
+    const product = document.createElement('div');
+    product.className = 'review-role';
+    product.textContent = `Review for ${review.productName}`;
+    details.append(name, product);
+    person.appendChild(details);
+    card.append(rating, quote, person);
+    column.appendChild(card);
+    grid.appendChild(column);
+  });
 }
 renderHomeProducts();
 function onProductsLoaded(){

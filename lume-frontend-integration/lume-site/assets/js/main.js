@@ -364,11 +364,43 @@ function initLumeChrome() {
 
   /* Newsletter forms (any page) */
   document.querySelectorAll('.js-newsletter-form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const note = form.querySelector('.newsletter-note');
-      if (note) { note.textContent = "You're on the list — welcome to LUMÉ."; note.style.color = 'var(--accent-soft)'; }
-      form.reset();
+      const note = form.closest('.newsletter-panel')?.querySelector('.newsletter-note')
+        || form.parentElement?.querySelector('.newsletter-note');
+      const email = form.querySelector('input[type="email"]')?.value.trim();
+      const button = form.querySelector('button[type="submit"]');
+      const originalButtonText = button?.innerHTML;
+      try {
+        if (!email || !window.LumeAPI?.sendContactMessage) {
+          throw new Error('The update request service is currently unavailable.');
+        }
+        if (button) {
+          button.disabled = true;
+          button.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
+        }
+        await window.LumeAPI.sendContactMessage({
+          name: 'Newsletter update request',
+          email,
+          subject: 'Newsletter update request',
+          message: 'This visitor asked the LUMÉ studio to contact them about new arrivals and design updates. This is a request for staff review, not an automated mailing-list enrollment.',
+        });
+        if (note) {
+          note.textContent = 'Request sent to the studio for review.';
+          note.style.color = 'var(--accent-soft)';
+        }
+        form.reset();
+      } catch (error) {
+        if (note) {
+          note.textContent = error.message || 'Unable to send your request. Please try again.';
+          note.style.color = 'var(--error)';
+        }
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.innerHTML = originalButtonText;
+        }
+      }
     });
   });
 

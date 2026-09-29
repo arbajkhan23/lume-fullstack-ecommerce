@@ -649,6 +649,13 @@ function applyRemoteProducts(products) {
         stock: Number(product.stock) > 0,
         isFeatured: Boolean(product.isFeatured),
         isTrending: Boolean(product.isTrending),
+        customerReviews: Array.isArray(product.reviews)
+          ? product.reviews.filter(review => review?.comment && review?.name).map(review => ({
+              name: String(review.name),
+              comment: String(review.comment),
+              rating: Number(review.rating) || 0,
+            }))
+          : [],
         desc: product.description || "",
         features: product.features || [],
       };
