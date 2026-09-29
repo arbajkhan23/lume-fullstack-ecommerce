@@ -1,112 +1,327 @@
-# LUMÉ — Backend + Admin Panel
+# LUMÉ — Full-Stack E-commerce Platform
 
-Full backend and admin panel for the LUMÉ e-commerce storefront
-(`https://arbajkhan23.github.io/lumesite/`), built to plug into the existing
-frontend without changing its design.
+A full-stack e-commerce demo featuring a responsive storefront, React admin dashboard, Node.js REST API, MongoDB database, customer authentication, cart, wishlist, and order management.
 
-```
-Admin → Admin Panel (React) → Backend API (Express) → MongoDB → LUMÉ Frontend → Customer → Order → Admin Panel
-```
+## Live Demo
 
-## What's included
+| Component        | Live URL                                          |
+| ---------------- | ------------------------------------------------- |
+| Storefront       | https://lume-fullstack.web.app/                   |
+| Admin Panel      | https://lume-fullstack-ecommerce-h2kk.vercel.app/ |
+| Backend API      | https://lume-backend-oz8t.onrender.com            |
+| API Health Check | https://lume-backend-oz8t.onrender.com/api/health |
 
-```
-lume-backend/                  Node.js + Express + MongoDB REST API
-├── config/                    DB + Cloudinary/Multer setup
-├── models/                    10 Mongoose schemas
-├── middleware/                Auth (user + admin JWT), error handling, validation
-├── controllers/                12 controllers — full business logic
-├── routes/                    10 REST namespaces
-├── seed/seedData.js           Loads your live site's 24 products + 6 categories
-├── server.js                  App entrypoint
-├── .env.example
-└── package.json
+> **Note:** LUMÉ is a demonstration e-commerce project built to showcase full-stack development and deployment.
 
-lume-admin/                    React + Vite + Tailwind admin panel
-├── src/pages/                  Dashboard, Products, Categories, Orders,
-│                               Customers, Coupons, Deals, Banners, Login
-├── src/components/            Reusable table, modal, confirm dialog, stat cards
-├── src/context/AuthContext.jsx
-├── src/api/axios.js           JWT-attached HTTP client
-├── .env.example
-└── package.json
+## Project Overview
 
-lume-frontend-integration/     Patch files for your EXISTING GitHub Pages site
-├── products.js                 Drop-in replacement (API-backed, same globals)
-├── lume-api.js                 New script — auth/cart/wishlist/orders
-└── FRONTEND_INTEGRATION_GUIDE.md   Exact patch points, page by page
+LUMÉ provides an end-to-end shopping experience, from browsing products and managing a cart to placing orders and tracking their status through the customer account. Administrators can manage products, categories, customers, and orders through a dedicated dashboard.
+
+```text
+Customer
+   ↓
+LUMÉ Storefront (Firebase Hosting)
+   ↓
+Backend REST API (Node.js + Express)
+   ↓
+MongoDB Atlas
+   ↓
+Order Management
+   ↓
+Admin Dashboard (React + Vite)
 ```
 
-## 1. Backend setup
+## Tech Stack
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Responsive design
+* Firebase Hosting
+
+### Admin Panel
+
+* React
+* Vite
+* Tailwind CSS
+* React Router
+* Axios
+* Recharts
+* Lucide React
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT authentication
+* REST API
+* Cloudinary and Multer for image management
+
+### Deployment and Services
+
+* Firebase Hosting — Storefront
+* Vercel — Admin Panel
+* Render — Backend API
+* MongoDB Atlas — Database
+* Cloudinary — Image storage
+
+## Project Structure
+
+```text
+lume-fullstack-ecommerce/
+│
+├── lume-backend/
+│   ├── config/
+│   │   └── Database and Cloudinary configuration
+│   ├── models/
+│   │   └── Mongoose schemas
+│   ├── middleware/
+│   │   └── Authentication, validation, error handling
+│   ├── controllers/
+│   │   └── API business logic
+│   ├── routes/
+│   │   └── REST API routes
+│   ├── seed/
+│   │   └── seedData.js
+│   ├── server.js
+│   ├── .env.example
+│   └── package.json
+│
+├── lume-admin/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Dashboard
+│   │   │   ├── Products
+│   │   │   ├── Categories
+│   │   │   ├── Orders
+│   │   │   ├── Customers
+│   │   │   ├── Coupons
+│   │   │   ├── Deals
+│   │   │   ├── Banners
+│   │   │   └── Login
+│   │   ├── components/
+│   │   ├── context/
+│   │   └── api/
+│   ├── .env.example
+│   └── package.json
+│
+└── lume-frontend-integration/
+    └── lume-site/
+        ├── index.html
+        ├── shop.html
+        ├── product-details.html
+        ├── cart.html
+        ├── checkout.html
+        ├── account.html
+        ├── wishlist.html
+        └── assets/
+            ├── css/
+            └── js/
+```
+
+## Key Features
+
+### Customer Storefront
+
+* Responsive homepage with product collections
+* Product categories and product detail pages
+* Product search and browsing
+* Shopping cart and quantity management
+* Wishlist functionality
+* Customer registration and login
+* Checkout and Cash on Delivery
+* Customer account and order history
+* Contact form and newsletter interface
+
+### Admin Dashboard
+
+* Admin authentication
+* Dashboard with order, customer, product, and revenue statistics
+* Product management
+* Category management
+* Order management and status updates
+* Customer management
+* Coupons, deals, and banners management
+
+### Backend API
+
+* RESTful API built with Express
+* MongoDB data persistence
+* User and admin JWT authentication
+* Product and category endpoints
+* Cart and wishlist endpoints
+* Order creation and management
+* Coupon and deal functionality
+* Cloudinary image handling
+* API health endpoint
+
+## Order Status Workflow
+
+```text
+Pending
+   ↓
+Confirmed
+   ↓
+Processing
+   ↓
+Shipped
+   ↓
+Delivered
+```
+
+Orders may also be cancelled before reaching the Delivered state, subject to the backend's status transition rules. The backend supports restocking items when an order is cancelled.
+
+## Local Development
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/arbajkhan23/lume-fullstack-ecommerce.git
+
+cd lume-fullstack-ecommerce
+```
+
+### 2. Backend Setup
 
 ```bash
 cd lume-backend
-cp .env.example .env
-# Fill in: MONGO_URI (MongoDB Atlas or local), JWT_SECRET, ADMIN_JWT_SECRET,
-# CLOUDINARY_* credentials, CLIENT_URL, ADMIN_URL
-
 npm install
-npm run seed        # loads your 24 live products + 6 categories + a super admin
-npm run dev          # starts on http://localhost:5000
 ```
 
-Health check: `GET http://localhost:5000/api/health`
+Create a `.env` file using `.env.example` as a reference. Configure your own database URI, JWT secrets, Cloudinary credentials, and allowed frontend origins.
 
-**Default super admin** (from seed, unless overridden in `.env`):
-`admin@lume-studio.com` / `ChangeMe123!` — **change this password after first login.**
+```bash
+npm run seed
+npm run dev
+```
 
-## 2. Admin panel setup
+Backend development server:
+
+```text
+http://localhost:5000
+```
+
+Health check:
+
+```text
+http://localhost:5000/api/health
+```
+
+### 3. Admin Panel Setup
 
 ```bash
 cd lume-admin
-cp .env.example .env
-# VITE_API_URL=http://localhost:5000/api  (or your deployed backend URL)
-
 npm install
-npm run dev          # starts on http://localhost:5174
 ```
 
-Log in with the super admin credentials above.
+Create a `.env` file and configure the API URL:
 
-## 3. Connect your existing frontend
-
-Follow `lume-frontend-integration/FRONTEND_INTEGRATION_GUIDE.md` — it's a
-short, surgical list of patches (new script includes + wrapping existing
-render calls in one event listener). No HTML structure, CSS, or visual
-design changes required.
-
-## Order status flow
-
+```env
+VITE_API_URL=http://localhost:5000/api
 ```
-Pending → Confirmed → Processing → Shipped → Delivered
-                                        ↘
-                                     Cancelled (from any pre-Delivered state)
+
+Start the development server:
+
+```bash
+npm run dev
 ```
-Cancelling an order automatically restocks its items. Delivered/Cancelled
-are terminal — the API rejects further status changes once reached.
 
-## Security notes for production
+The Vite development server is configured for:
 
-- Rotate `JWT_SECRET` / `ADMIN_JWT_SECRET` to long random values — never reuse the placeholders in `.env.example`.
-- Change the seeded super admin password immediately.
-- Set `NODE_ENV=production` to suppress stack traces in error responses.
-- `CLIENT_URL` / `ADMIN_URL` lock down CORS — update them to your real deployed origins.
-- Rate limiting is already applied to both login endpoints (30 requests / 15 min).
+```text
+http://localhost:5174
+```
 
-## Deployment suggestions
+### 4. Frontend Setup
 
-- **Backend**: Render, Railway, or Fly.io (any Node host + MongoDB Atlas)
-- **Admin panel**: Vercel or Netlify (`npm run build` → static `dist/`)
-- **Database**: MongoDB Atlas free tier is sufficient to start
-- **Images**: already handled by Cloudinary — no server disk storage needed
+Open the `lume-frontend-integration/lume-site` directory and serve the static storefront locally using a development server.
 
-## Known limitations of this delivery
+Configure the frontend API endpoint to point to your local backend when developing locally. For production, use the deployed API endpoint.
 
-- Built and syntax-validated in a sandboxed environment without live MongoDB
-  or npm registry access — every file passed `node --check` (backend) and a
-  bracket-balance pass (admin panel JSX), but a live end-to-end run against
-  a real database hasn't been performed. Budget time for a first-run smoke
-  test once you have Atlas + Cloudinary credentials in place.
-- Frontend integration is delivered as a guide + two new JS files rather
-  than already applied to your live GitHub Pages repo, since this
-  environment doesn't have push access to it.
+## Production Deployment
+
+| Service       | Platform         | Purpose                  |
+| ------------- | ---------------- | ------------------------ |
+| Storefront    | Firebase Hosting | Customer-facing website  |
+| Admin Panel   | Vercel           | Administration dashboard |
+| Backend       | Render           | Express REST API         |
+| Database      | MongoDB Atlas    | Application data         |
+| Image Storage | Cloudinary       | Product and media images |
+
+### Production API
+
+```text
+https://lume-backend-oz8t.onrender.com/api
+```
+
+### Environment Variables
+
+Configure environment variables securely in each hosting provider. Typical backend settings include:
+
+```env
+NODE_ENV=production
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_random_secret
+ADMIN_JWT_SECRET=your_secure_admin_secret
+CLIENT_URL=your_storefront_origin
+ADMIN_URL=your_admin_panel_origin
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+
+Use your own credentials and never commit `.env` files or private secrets to GitHub.
+
+## Testing and Verification
+
+The deployed project has been tested for key end-to-end order functionality:
+
+* Customer checkout and order submission
+* Order reference generation
+* Cash on Delivery order confirmation
+* Customer order history
+* Admin order visibility
+* Admin order status updates
+* Updated order status reflected in customer order history
+
+The live order flow was verified using the deployed storefront, backend, database, and admin dashboard.
+
+> Testing reflects the demonstrated flows and does not imply that every possible edge case, security scenario, or production load condition has been independently audited.
+
+## Security
+
+* Keep database credentials and JWT secrets in environment variables.
+* Use strong, unique production secrets.
+* Do not publish admin passwords or private credentials in the repository.
+* Restrict CORS to the deployed storefront and admin origins.
+* Use HTTPS for production services.
+* Change any initial or seeded administrator password before production use.
+* Review authentication, authorization, validation, and rate limiting before accepting real customer transactions.
+
+## Future Improvements
+
+* Integrate a production payment gateway
+* Add automated end-to-end testing
+* Improve analytics and reporting
+* Add order email notifications
+* Expand product filtering and sorting
+* Optimize image delivery and storefront performance
+* Add automated backups and production monitoring
+
+## Developer
+
+**Arbaj Khan**
+Frontend Developer | Full-Stack E-commerce Project
+
+Portfolio: https://arbaj-portfolio.web.app/
+
+GitHub: https://github.com/arbajkhan23
+
+---
+
+**LUMÉ** — Full-Stack E-commerce Demo
+Built with React, Node.js, Express, MongoDB, and modern web technologies.
