@@ -1,435 +1,776 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUMÉ — Considered Objects for Everyday Light</title>
-<meta name="description" content="LUMÉ is a premium home, lighting and lifestyle store — considered objects, honestly made.">
-<meta name="author" content="Arbaj Khan">
-<meta name="developer" content="Arbaj Khan">
-<meta name="designer" content="Arbaj Khan">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-
-<div class="ambient"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-<div class="grain"></div>
-
-<!-- ============ ANNOUNCEMENT BAR ============ -->
-<div class="announce-bar" id="announceBar">
-  <div class="container announce-track">
-    <div class="announce-item active">Free shipping over <strong>$75 USD</strong>; <strong>$8.50 USD</strong> below.</div>
-    <div class="announce-item">Cash on Delivery is available at checkout.</div>
-    <div class="announce-item">Browse new lighting and considered home objects.</div>
-  </div>
-  <button class="announce-close" aria-label="Dismiss announcement"><i class="bi bi-x-lg"></i></button>
-</div>
-
-<!-- ============ NAVBAR ============ -->
-<nav class="lume-nav" id="mainNav">
-  <div class="container d-flex align-items-center justify-content-between">
-    <a href="index.html" class="brand">LUM<span class="dot">É</span></a>
-    <ul class="nav-links d-none d-lg-flex list-unstyled m-0 align-items-center">
-      <li><a href="shop.html" data-nav="shop.html">Shop</a></li>
-      <li><a href="index.html#categories">Categories</a></li>
-      <li><a href="shop.html?filter=new">New Arrivals</a></li>
-      <li><a href="shop.html?filter=sale">Deals</a></li>
-      <li><a href="about.html" data-nav="about.html">About</a></li>
-      <li><a href="contact.html" data-nav="contact.html">Contact</a></li>
-    </ul>
-    <div class="d-flex align-items-center gap-2">
-      <div class="nav-search d-none d-md-block" id="navSearch"><input type="text" class="nav-search-input" placeholder="Search products…" aria-label="Search products"></div>
-      <button class="icon-btn d-none d-md-flex" id="searchToggleBtn" aria-label="Toggle search"><i class="bi bi-search"></i></button>
-      <button class="icon-btn" id="chatbotToggleBtn" aria-label="Open chatbot"><i class="bi bi-chat-dots"></i></button>
-      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="icon-badge" id="wishCount">0</span></a>
-      <a href="account.html" class="icon-btn d-none d-sm-flex" aria-label="Account"><i class="bi bi-person"></i></a>
-      <a href="cart.html" class="icon-btn" id="navCart" aria-label="Cart"><i class="bi bi-bag"></i><span class="icon-badge" id="cartCount">0</span></a>
-      <button class="icon-btn d-lg-none" aria-label="Open menu" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"><i class="bi bi-list"></i></button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMÉ — Considered Objects for Everyday Light</title>
+    <meta
+      name="description"
+      content="LUMÉ is a premium home, lighting and lifestyle store — considered objects, honestly made."
+    />
+    <meta name="author" content="Arbaj Khan" />
+    <meta name="developer" content="Arbaj Khan" />
+    <meta name="designer" content="Arbaj Khan" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="ambient">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
     </div>
-  </div>
-</nav>
+    <div class="grain"></div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
-  <div class="offcanvas-header">
-    <span class="brand">LUM<span class="dot">É</span></span>
-    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="nav-links list-unstyled">
-      <li><a href="shop.html" data-bs-dismiss="offcanvas">Shop</a></li>
-      <li><a href="index.html#categories" data-bs-dismiss="offcanvas">Categories</a></li>
-      <li><a href="shop.html?filter=new" data-bs-dismiss="offcanvas">New Arrivals</a></li>
-      <li><a href="shop.html?filter=sale" data-bs-dismiss="offcanvas">Deals</a></li>
-      <li><a href="about.html" data-bs-dismiss="offcanvas">About</a></li>
-      <li><a href="contact.html" data-bs-dismiss="offcanvas">Contact</a></li>
-      <li><a href="account.html" data-bs-dismiss="offcanvas">Account</a></li>
-    </ul>
-    <div class="nav-search open mt-3"><input type="text" class="nav-search-input" placeholder="Search products…"></div>
-  </div>
-</div>
-
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        <span class="eyebrow">Considered Objects</span>
-        <h1 class="mt-3 mb-4">Light your space<br><span class="italic-accent">with intention.</span></h1>
-        <p class="lede">Lighting, decor and everyday objects designed with restraint — honest materials, quiet forms, made to outlast trend cycles.</p>
-        <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start">
-          <a href="shop.html?filter=new" class="btn-lume-primary">Shop New Arrivals</a>
-          <a href="#categories" class="btn-lume-ghost">Explore Collections</a>
+    <!-- ============ ANNOUNCEMENT BAR ============ -->
+    <div class="announce-bar" id="announceBar">
+      <div class="container announce-track">
+        <div class="announce-item active">
+          Free shipping over <strong>$75 USD</strong>;
+          <strong>$8.50 USD</strong> below.
         </div>
-        <div class="d-flex hero-stats mt-5 justify-content-center justify-content-lg-start">
-          <div><span class="stat-num" id="homeProductCount">24</span><div class="stat-label">Objects to explore</div></div>
-          <div><span class="stat-num" id="homeCategoryCount">6</span><div class="stat-label">Collections</div></div>
-          <div><span class="stat-num">USD</span><div class="stat-label">Prices shown in</div></div>
+        <div class="announce-item">
+          Cash on Delivery is available at checkout.
+        </div>
+        <div class="announce-item">
+          Browse new lighting and considered home objects.
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="hero-visual">
-          <div class="hero-badge-top glass-strong"><i class="bi bi-stars text-warning"></i> Editor's Pick</div>
-          <div class="hero-card-main glass"><img id="heroBannerImage" src="https://picsum.photos/seed/lume-hero/900/1100" alt="LUMÉ considered home interior"></div>
-          <div class="hero-float-card glass-strong">
-            <div class="d-flex justify-content-between align-items-start">
-              <span class="hf-title" id="heroBannerTitle">Aalto Table Lamp</span>
-              <i class="bi bi-heart" style="color:var(--rose)"></i>
+      <button class="announce-close" aria-label="Dismiss announcement">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="lume-nav" id="mainNav">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="index.html" class="brand">LUM<span class="dot">É</span></a>
+        <ul
+          class="nav-links d-none d-lg-flex list-unstyled m-0 align-items-center"
+        >
+          <li><a href="shop.html" data-nav="shop.html">Shop</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+          <li><a href="shop.html?filter=new">New Arrivals</a></li>
+          <li><a href="shop.html?filter=sale">Deals</a></li>
+          <li><a href="about.html" data-nav="about.html">About</a></li>
+          <li><a href="contact.html" data-nav="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <div class="nav-search d-none d-md-block" id="navSearch">
+            <input
+              type="text"
+              class="nav-search-input"
+              placeholder="Search products…"
+              aria-label="Search products"
+            />
+          </div>
+          <button
+            class="icon-btn d-none d-md-flex"
+            id="searchToggleBtn"
+            aria-label="Toggle search"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+          <button
+            class="icon-btn"
+            id="chatbotToggleBtn"
+            aria-label="Open chatbot"
+          >
+            <i class="bi bi-chat-dots"></i>
+          </button>
+          <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"
+            ><i class="bi bi-heart"></i
+            ><span class="icon-badge" id="wishCount">0</span></a
+          >
+          <a
+            href="account.html"
+            class="icon-btn d-none d-sm-flex"
+            aria-label="Account"
+            ><i class="bi bi-person"></i
+          ></a>
+          <a href="cart.html" class="icon-btn" id="navCart" aria-label="Cart"
+            ><i class="bi bi-bag"></i
+            ><span class="icon-badge" id="cartCount">0</span></a
+          >
+          <button
+            class="icon-btn d-lg-none"
+            aria-label="Open menu"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobileMenu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+      <div class="offcanvas-header">
+        <span class="brand">LUM<span class="dot">É</span></span>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav-links list-unstyled">
+          <li><a href="shop.html" data-bs-dismiss="offcanvas">Shop</a></li>
+          <li>
+            <a href="index.html#categories" data-bs-dismiss="offcanvas"
+              >Categories</a
+            >
+          </li>
+          <li>
+            <a href="shop.html?filter=new" data-bs-dismiss="offcanvas"
+              >New Arrivals</a
+            >
+          </li>
+          <li>
+            <a href="shop.html?filter=sale" data-bs-dismiss="offcanvas"
+              >Deals</a
+            >
+          </li>
+          <li><a href="about.html" data-bs-dismiss="offcanvas">About</a></li>
+          <li>
+            <a href="contact.html" data-bs-dismiss="offcanvas">Contact</a>
+          </li>
+          <li>
+            <a href="account.html" data-bs-dismiss="offcanvas">Account</a>
+          </li>
+        </ul>
+        <div class="nav-search open mt-3">
+          <input
+            type="text"
+            class="nav-search-input"
+            placeholder="Search products…"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="eyebrow">Considered Objects</span>
+            <h1 class="mt-3 mb-4">
+              Light your space<br /><span class="italic-accent"
+                >with intention.</span
+              >
+            </h1>
+            <p class="lede">
+              Lighting, decor and everyday objects designed with restraint —
+              honest materials, quiet forms, made to outlast trend cycles.
+            </p>
+            <div
+              class="d-flex flex-wrap gap-3 mt-4 justify-content-center justify-content-lg-start"
+            >
+              <a href="shop.html?filter=new" class="btn-lume-primary"
+                >Shop New Arrivals</a
+              >
+              <a href="#categories" class="btn-lume-ghost"
+                >Explore Collections</a
+              >
             </div>
-            <p class="hero-banner-subtitle mt-2 mb-0" id="heroBannerSubtitle">Considered materials and useful forms for everyday living.</p>
+            <div
+              class="d-flex hero-stats mt-5 justify-content-center justify-content-lg-start"
+            >
+              <div>
+                <span class="stat-num" id="homeProductCount">24</span>
+                <div class="stat-label">Objects to explore</div>
+              </div>
+              <div>
+                <span class="stat-num" id="homeCategoryCount">6</span>
+                <div class="stat-label">Collections</div>
+              </div>
+              <div>
+                <span class="stat-num">USD</span>
+                <div class="stat-label">Prices shown in</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-visual">
+              <div class="hero-badge-top glass-strong">
+                <i class="bi bi-stars text-warning"></i> Editor's Pick
+              </div>
+              <div class="hero-card-main glass">
+                <img
+                  id="heroBannerImage"
+                  src="https://picsum.photos/seed/lume-hero/900/1100"
+                  alt="LUMÉ considered home interior"
+                />
+              </div>
+              <div class="hero-float-card glass-strong">
+                <div class="d-flex justify-content-between align-items-start">
+                  <span class="hf-title" id="heroBannerTitle"
+                    >Aalto Table Lamp</span
+                  >
+                  <i class="bi bi-heart" style="color: var(--rose)"></i>
+                </div>
+                <p
+                  class="hero-banner-subtitle mt-2 mb-0"
+                  id="heroBannerSubtitle"
+                >
+                  Considered materials and useful forms for everyday living.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
+    </header>
 
-<main>
-<!-- ============ SHOP BY CATEGORIES ============ -->
-<section class="section" id="categories">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-end section-head reveal">
-      <div><span class="eyebrow">Collections</span><h2 class="mt-2 mb-0">Shop by Category</h2></div>
-      <a href="shop.html" class="view-all d-none d-sm-inline">View all categories</a>
-    </div>
-    <div class="row g-3 g-md-4" id="categoryGrid"></div>
-  </div>
-</section>
-
-<!-- ============ FEATURED PRODUCTS ============ -->
-<section class="section" id="featured">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-end section-head reveal">
-      <div><span class="eyebrow">Curated Selection</span><h2 class="mt-2 mb-0">Featured Products</h2></div>
-      <a href="shop.html" class="view-all d-none d-sm-inline">View all products</a>
-    </div>
-    <div class="row g-4" id="featuredGrid"></div>
-  </div>
-</section>
-
-<!-- ============ NEW ARRIVALS ============ -->
-<section class="section" id="arrivals">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-end section-head reveal">
-      <div><span class="eyebrow">Just Landed</span><h2 class="mt-2 mb-0">New Arrivals</h2></div>
-      <a href="shop.html?filter=new" class="view-all d-none d-sm-inline">View all</a>
-    </div>
-    <div class="arrivals-slider">
-      <button class="slider-control prev" id="arrivalsPrev" aria-label="Scroll left"><i class="bi bi-chevron-left"></i></button>
-      <div class="scroll-row" id="arrivalsRow"></div>
-      <button class="slider-control next" id="arrivalsNext" aria-label="Scroll right"><i class="bi bi-chevron-right"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DEALS BANNER ============ -->
-<section class="section pt-0" id="deals">
-  <div class="container">
-    <div class="deal-banner glass-strong reveal">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <span class="eyebrow">The Lighting Edit</span>
-          <h2 class="mt-2">Lighting with <span class="italic-accent">a softer point of view.</span></h2>
-          <p class="mb-0" style="max-width:460px">Sculptural forms, considered materials and useful light for everyday rooms.</p>
+    <main>
+      <!-- ============ SHOP BY CATEGORIES ============ -->
+      <section class="section" id="categories">
+        <div class="container">
+          <div
+            class="d-flex justify-content-between align-items-end section-head reveal"
+          >
+            <div>
+              <span class="eyebrow">Collections</span>
+              <h2 class="mt-2 mb-0">Shop by Category</h2>
+            </div>
+            <a href="shop.html" class="view-all d-none d-sm-inline"
+              >View all categories</a
+            >
+          </div>
+          <div class="row g-3 g-md-4" id="categoryGrid"></div>
         </div>
-        <div class="col-lg-5">
-          <div class="d-flex flex-column align-items-center align-items-lg-end gap-3">
-            <p class="small text-lg-end mb-0">Shipping charges are shown before checkout.</p>
-            <a href="shop.html?cat=lighting" class="btn-lume-primary">Explore lighting <i class="bi bi-arrow-right"></i></a>
+      </section>
+
+      <!-- ============ FEATURED PRODUCTS ============ -->
+      <section class="section" id="featured">
+        <div class="container">
+          <div
+            class="d-flex justify-content-between align-items-end section-head reveal"
+          >
+            <div>
+              <span class="eyebrow">Curated Selection</span>
+              <h2 class="mt-2 mb-0">Featured Products</h2>
+            </div>
+            <a href="shop.html" class="view-all d-none d-sm-inline"
+              >View all products</a
+            >
+          </div>
+          <div class="row g-4" id="featuredGrid"></div>
+        </div>
+      </section>
+
+      <!-- ============ NEW ARRIVALS ============ -->
+      <section class="section" id="arrivals">
+        <div class="container">
+          <div
+            class="d-flex justify-content-between align-items-end section-head reveal"
+          >
+            <div>
+              <span class="eyebrow">Just Landed</span>
+              <h2 class="mt-2 mb-0">New Arrivals</h2>
+            </div>
+            <a href="shop.html?filter=new" class="view-all d-none d-sm-inline"
+              >View all</a
+            >
+          </div>
+          <div class="arrivals-slider">
+            <button
+              class="slider-control prev"
+              id="arrivalsPrev"
+              aria-label="Scroll left"
+            >
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <div class="scroll-row" id="arrivalsRow"></div>
+            <button
+              class="slider-control next"
+              id="arrivalsNext"
+              aria-label="Scroll right"
+            >
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DEALS BANNER ============ -->
+      <section class="section pt-0" id="deals">
+        <div class="container">
+          <div class="deal-banner glass-strong reveal">
+            <div class="row align-items-center g-4">
+              <div class="col-lg-7">
+                <span class="eyebrow">The Lighting Edit</span>
+                <h2 class="mt-2">
+                  Lighting with
+                  <span class="italic-accent">a softer point of view.</span>
+                </h2>
+                <p class="mb-0" style="max-width: 460px">
+                  Sculptural forms, considered materials and useful light for
+                  everyday rooms.
+                </p>
+              </div>
+              <div class="col-lg-5">
+                <div
+                  class="d-flex flex-column align-items-center align-items-lg-end gap-3"
+                >
+                  <p class="small text-lg-end mb-0">
+                    Shipping charges are shown before checkout.
+                  </p>
+                  <a href="shop.html?cat=lighting" class="btn-lume-primary"
+                    >Explore lighting <i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TRENDING WITH FILTERS ============ -->
+      <section class="section" id="trending">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Right Now</span>
+            <h2 class="mt-2 mb-3">Trending Products</h2>
+            <div class="filter-pills" id="filterPills">
+              <span class="filter-pill active" data-filter="all">All</span>
+              <span class="filter-pill" data-filter="lighting">Lighting</span>
+              <span class="filter-pill" data-filter="home-decor"
+                >Home Decor</span
+              >
+              <span class="filter-pill" data-filter="new-lighting"
+                >Accessories</span
+              >
+              <span class="filter-pill" data-filter="fragrance">Fragrance</span>
+            </div>
+          </div>
+          <div class="row g-4" id="trendingGrid"></div>
+        </div>
+      </section>
+
+      <!-- ============ WHY CHOOSE US ============ -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head text-center reveal">
+            <span class="eyebrow">Our Promise</span>
+            <h2 class="mt-2">Why Choose LUMÉ</h2>
+          </div>
+          <div class="row g-4">
+            <div class="col-6 col-lg-3">
+              <div class="why-card glass reveal">
+                <div class="why-icon"><i class="bi bi-truck"></i></div>
+                <h4 class="h6">Shipping, shown upfront</h4>
+                <p class="mb-0 small">
+                  Free over $75 USD; otherwise $8.50 USD.
+                </p>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="why-card glass reveal">
+                <div class="why-icon"><i class="bi bi-box-seam"></i></div>
+                <h4 class="h6">Live availability</h4>
+                <p class="mb-0 small">
+                  Stock is checked again when an order is placed.
+                </p>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="why-card glass reveal">
+                <div class="why-icon"><i class="bi bi-receipt"></i></div>
+                <h4 class="h6">Order history</h4>
+                <p class="mb-0 small">
+                  Find order status from your account page.
+                </p>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="why-card glass reveal">
+                <div class="why-icon">
+                  <i class="bi bi-chat-square-text"></i>
+                </div>
+                <h4 class="h6">Contact the studio</h4>
+                <p class="mb-0 small">
+                  Send product or order questions through our contact form.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CUSTOMER REVIEWS ============ -->
+      <section class="section" id="reviews">
+        <div class="container">
+          <div class="section-head text-center reveal">
+            <span class="eyebrow">Customer Reviews</span>
+            <h2 class="mt-2">What Our Customers Say</h2>
+          </div>
+          <div class="row g-4" id="customerReviewGrid">
+            <div class="col-12">
+              <p class="small text-center mb-0">
+                No published customer reviews yet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NEWSLETTER ============ -->
+      <section class="section">
+        <div class="container">
+          <div class="newsletter-panel glass-strong reveal">
+            <span class="eyebrow">Stay in the Light</span>
+            <h2 class="mt-2">Request studio updates</h2>
+            <p class="mx-auto" style="max-width: 460px">
+              Ask the LUMÉ studio to contact you about new arrivals and
+              considered reads on design. Submitting sends an update request to
+              the studio for review.
+            </p>
+            <form class="newsletter-form js-newsletter-form">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email address"
+                aria-label="Email address"
+              />
+              <button type="submit" class="btn-lume-primary">
+                Request updates
+              </button>
+            </form>
+            <div class="newsletter-note" role="status">
+              Your request will be sent to the studio for review.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="footer-brand mb-3">
+              LUM<span class="dot" style="color: var(--accent)">É</span>
+            </div>
+            <p style="max-width: 320px" class="small">
+              Considered lighting, decor and everyday objects — honestly made,
+              designed to outlast trend cycles.
+            </p>
+            <div class="footer-social mt-3">
+              <a
+                href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contact LUMÉ on WhatsApp"
+                ><i class="bi bi-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Shop</div>
+            <div class="footer-links">
+              <a href="shop.html?cat=lighting">Lighting</a>
+              <a href="shop.html?cat=home-decor">Decor</a>
+              <a href="shop.html?cat=fragrance">Fragrance</a>
+              <a href="shop.html?cat=new-lighting">Accessories</a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Customer Care</div>
+            <div class="footer-links">
+              <a href="contact.html">Contact Us</a>
+              <a href="about.html">Shipping Info</a>
+              <a href="contact.html">Returns questions</a>
+              <a href="about.html">FAQs</a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="footer-heading">Visit the Studio</div>
+            <p class="small mb-1">
+              <i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan,
+              India
+            </p>
+            <p class="small">
+              <i class="bi bi-whatsapp me-2"></i
+              ><a
+                href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                >WhatsApp: +91 81075 95781</a
+              >
+            </p>
+          </div>
+        </div>
+        <div
+          class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2"
+        >
+          <span
+            ><div class="developer-credit">
+              © 2026 All Rights Reserved. Designed & Developed by
+              <a
+                href="https://arbaj-portfolio.web.app/"
+                target="_blank"
+                rel="noopener"
+              >
+                Arbaj Khan
+              </a>
+            </div></span
+          >
+          <div class="payment-icons">
+            <i class="bi bi-cash-coin"></i><span>Cash on Delivery</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- ============ TRENDING WITH FILTERS ============ -->
-<section class="section" id="trending">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Right Now</span>
-      <h2 class="mt-2 mb-3">Trending Products</h2>
-      <div class="filter-pills" id="filterPills">
-        <span class="filter-pill active" data-filter="all">All</span>
-        <span class="filter-pill" data-filter="lighting">Lighting</span>
-        <span class="filter-pill" data-filter="home-decor">Home Decor</span>
-        <span class="filter-pill" data-filter="new-lighting">Accessories</span>
-        <span class="filter-pill" data-filter="fragrance">Fragrance</span>
+    <button class="to-top glass-strong" id="toTop" aria-label="Back to top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- ============ CHATBOT WIDGET ============ -->
+    <div class="chatbot-widget" id="chatbotWidget">
+      <div class="chatbot-header">
+        <span>LUMÉ Assistant</span>
+        <button
+          class="btn-close-chatbot"
+          id="chatbotCloseBtn"
+          aria-label="Close chatbot"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
-    </div>
-    <div class="row g-4" id="trendingGrid"></div>
-  </div>
-</section>
-
-<!-- ============ WHY CHOOSE US ============ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head text-center reveal"><span class="eyebrow">Our Promise</span><h2 class="mt-2">Why Choose LUMÉ</h2></div>
-    <div class="row g-4">
-      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-truck"></i></div><h4 class="h6">Shipping, shown upfront</h4><p class="mb-0 small">Free over $75 USD; otherwise $8.50 USD.</p></div></div>
-      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-box-seam"></i></div><h4 class="h6">Live availability</h4><p class="mb-0 small">Stock is checked again when an order is placed.</p></div></div>
-      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-receipt"></i></div><h4 class="h6">Order history</h4><p class="mb-0 small">Find order status from your account page.</p></div></div>
-      <div class="col-6 col-lg-3"><div class="why-card glass reveal"><div class="why-icon"><i class="bi bi-chat-square-text"></i></div><h4 class="h6">Contact the studio</h4><p class="mb-0 small">Send product or order questions through our contact form.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CUSTOMER REVIEWS ============ -->
-<section class="section" id="reviews">
-  <div class="container">
-    <div class="section-head text-center reveal"><span class="eyebrow">Customer Reviews</span><h2 class="mt-2">What Our Customers Say</h2></div>
-    <div class="row g-4" id="customerReviewGrid"><div class="col-12"><p class="small text-center mb-0">No published customer reviews yet.</p></div></div>
-  </div>
-</section>
-
-<!-- ============ NEWSLETTER ============ -->
-<section class="section">
-  <div class="container">
-    <div class="newsletter-panel glass-strong reveal">
-      <span class="eyebrow">Stay in the Light</span>
-      <h2 class="mt-2">Request studio updates</h2>
-      <p class="mx-auto" style="max-width:460px">Ask the LUMÉ studio to contact you about new arrivals and considered reads on design. Submitting sends an update request to the studio for review.</p>
-      <form class="newsletter-form js-newsletter-form">
-        <input type="email" required placeholder="Enter your email address" aria-label="Email address">
-        <button type="submit" class="btn-lume-primary">Request updates</button>
-      </form>
-      <div class="newsletter-note" role="status">Your request will be sent to the studio for review.</div>
-    </div>
-  </div>
-</section>
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <div class="footer-brand mb-3">LUM<span class="dot" style="color:var(--accent)">É</span></div>
-        <p style="max-width:320px" class="small">Considered lighting, decor and everyday objects — honestly made, designed to outlast trend cycles.</p>
-        <div class="footer-social mt-3">
-          <a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer" aria-label="Contact LUMÉ on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-msg bot-msg">
+          <p>
+            Hi! 👋 Welcome to LUMÉ. How can I help you today? I can assist with
+            product recommendations, shipping info, or answer questions about
+            our collection.
+          </p>
         </div>
       </div>
-      <div class="col-6 col-lg-2">
-        <div class="footer-heading">Shop</div>
-        <div class="footer-links">
-          <a href="shop.html?cat=lighting">Lighting</a>
-          <a href="shop.html?cat=home-decor">Decor</a>
-          <a href="shop.html?cat=fragrance">Fragrance</a>
-          <a href="shop.html?cat=new-lighting">Accessories</a>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2">
-        <div class="footer-heading">Customer Care</div>
-        <div class="footer-links">
-          <a href="contact.html">Contact Us</a>
-          <a href="about.html">Shipping Info</a>
-          <a href="contact.html">Returns questions</a>
-          <a href="about.html">FAQs</a>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="footer-heading">Visit the Studio</div>
-        <p class="small mb-1"><i class="bi bi-geo-alt me-2"></i>C-Scheme, Jaipur, Rajasthan, India</p>
-        <p class="small"><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/918107595781?text=Hello%20LUM%C3%89%20Studio" target="_blank" rel="noopener noreferrer">WhatsApp: +91 81075 95781</a></p>
+      <div class="chatbot-input-area">
+        <input
+          type="text"
+          id="chatbotInput"
+          class="chatbot-input"
+          placeholder="Type your message..."
+          aria-label="Message input"
+        />
+        <button
+          class="chatbot-send-btn"
+          id="chatbotSendBtn"
+          aria-label="Send message"
+        >
+          <i class="bi bi-send-fill"></i>
+        </button>
       </div>
     </div>
-    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <span><div class="developer-credit">
-  © 2026 All Rights Reserved.
-  Designed & Developed by
-  <a href="https://arbaj-portfolio.web.app/" target="_blank" rel="noopener">
-    Arbaj Khan
-  </a>
-</div></span>
-      <div class="payment-icons"><i class="bi bi-cash-coin"></i><span>Cash on Delivery</span></div>
-    </div>
-  </div>
-</footer>
 
-<button class="to-top glass-strong" id="toTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/lume-api.js"></script>
+    <script>
+      function renderHomeProducts() {
+        const categories = CATEGORIES.filter(
+          (category) => category.isActive !== false,
+        );
+        const featured = PRODUCTS.filter((product) => product.isFeatured);
+        const trending = PRODUCTS.filter((product) => product.isTrending);
+        const featuredProducts = (featured.length ? featured : PRODUCTS).slice(
+          0,
+          8,
+        );
+        const trendingProducts = (
+          trending.length ? trending : PRODUCTS.slice(14, 22)
+        ).slice(0, 8);
+        const trendingCategories = [
+          ...new Set(
+            trendingProducts
+              .map((product) => String(product.cat || ""))
+              .filter(Boolean),
+          ),
+        ].map((slug) => ({ slug, name: catLabel(slug) }));
 
-<!-- ============ CHATBOT WIDGET ============ -->
-<div class="chatbot-widget" id="chatbotWidget">
-  <div class="chatbot-header">
-    <span>LUMÉ Assistant</span>
-    <button class="btn-close-chatbot" id="chatbotCloseBtn" aria-label="Close chatbot"><i class="bi bi-x-lg"></i></button>
-  </div>
-  <div class="chatbot-messages" id="chatbotMessages">
-    <div class="chatbot-msg bot-msg">
-      <p>Hi! 👋 Welcome to LUMÉ. How can I help you today? I can assist with product recommendations, shipping info, or answer questions about our collection.</p>
-    </div>
-  </div>
-  <div class="chatbot-input-area">
-    <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type your message..." aria-label="Message input">
-    <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
-  </div>
-</div>
+        document.getElementById("homeProductCount").textContent =
+          PRODUCTS.length;
+        document.getElementById("homeCategoryCount").textContent =
+          categories.length;
+        document.getElementById("categoryGrid").innerHTML = categories
+          .map(catCard)
+          .join("");
+        document.getElementById("featuredGrid").innerHTML = featuredProducts
+          .map(
+            (p) =>
+              `<div class="col-6 col-md-4 col-lg-3">${productCard(p, "reveal")}</div>`,
+          )
+          .join("");
+        document.getElementById("arrivalsRow").innerHTML = PRODUCTS.filter(
+          (p) => p.tag === "new",
+        )
+          .slice(0, 8)
+          .map((p) => productCard(p, "reveal"))
+          .join("");
+        document.getElementById("trendingGrid").innerHTML = trendingProducts
+          .map(
+            (p) =>
+              `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`,
+          )
+          .join("");
+        document.getElementById("filterPills").innerHTML =
+          '<button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>' +
+          trendingCategories
+            .map(
+              (category) =>
+                `<button type="button" class="filter-pill" data-filter="${category.slug}" aria-pressed="false">${category.name}</button>`,
+            )
+            .join("");
+        renderHomeReviews();
+      }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/products.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/lume-api.js"></script>
-<script>
-function renderHomeProducts(){
-  const categories = CATEGORIES.filter(category => category.isActive !== false);
-  const featured = PRODUCTS.filter(product => product.isFeatured);
-  const trending = PRODUCTS.filter(product => product.isTrending);
-  const featuredProducts = (featured.length ? featured : PRODUCTS).slice(0,8);
-  const trendingProducts = (trending.length ? trending : PRODUCTS.slice(14,22)).slice(0,8);
-  const trendingCategories = [...new Set(trendingProducts.map(product => String(product.cat || '')).filter(Boolean))]
-    .map(slug => ({ slug, name: catLabel(slug) }));
+      function renderHomeReviews() {
+        const grid = document.getElementById("customerReviewGrid");
+        if (!grid) return;
 
-  document.getElementById('homeProductCount').textContent = PRODUCTS.length;
-  document.getElementById('homeCategoryCount').textContent = categories.length;
-  document.getElementById('categoryGrid').innerHTML = categories.map(catCard).join('');
-  document.getElementById('featuredGrid').innerHTML = featuredProducts.map(p => `<div class="col-6 col-md-4 col-lg-3">${productCard(p,'reveal')}</div>`).join('');
-  document.getElementById('arrivalsRow').innerHTML = PRODUCTS.filter(p=>p.tag==='new').slice(0,8).map(p => productCard(p,'reveal')).join('');
-  document.getElementById('trendingGrid').innerHTML = trendingProducts.map(p => `<div class="col-6 col-md-4 col-lg-3 product-fade" data-cat="${p.cat}">${productCard(p)}</div>`).join('');
-  document.getElementById('filterPills').innerHTML = '<button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">All</button>' + trendingCategories.map(category => `<button type="button" class="filter-pill" data-filter="${category.slug}" aria-pressed="false">${category.name}</button>`).join('');
-  renderHomeReviews();
-}
+        const reviews = PRODUCTS.flatMap((product) =>
+          (product.customerReviews || [])
+            .filter((review) => review.comment && review.name)
+            .map((review) => ({ ...review, productName: product.name })),
+        ).slice(0, 4);
 
-function renderHomeReviews(){
-  const grid = document.getElementById('customerReviewGrid');
-  if(!grid) return;
+        grid.replaceChildren();
+        if (!reviews.length) {
+          const emptyColumn = document.createElement("div");
+          emptyColumn.className = "col-12";
+          const emptyMessage = document.createElement("p");
+          emptyMessage.className = "small text-center mb-0";
+          emptyMessage.textContent = "No published customer reviews yet.";
+          emptyColumn.appendChild(emptyMessage);
+          grid.appendChild(emptyColumn);
+          return;
+        }
 
-  const reviews = PRODUCTS.flatMap(product => (product.customerReviews || [])
-    .filter(review => review.comment && review.name)
-    .map(review => ({ ...review, productName: product.name })))
-    .slice(0,4);
+        reviews.forEach((review) => {
+          const column = document.createElement("div");
+          column.className = "col-md-6 col-lg-3";
+          const card = document.createElement("div");
+          card.className = "review-card glass reveal in";
+          const rating = document.createElement("div");
+          rating.className = "stars mb-2";
+          rating.innerHTML = starHTML(review.rating);
+          const quote = document.createElement("p");
+          quote.className = "review-quote";
+          quote.textContent = `“${review.comment}”`;
+          const person = document.createElement("div");
+          person.className = "review-person";
+          const details = document.createElement("div");
+          const name = document.createElement("div");
+          name.className = "review-name";
+          name.textContent = review.name;
+          const product = document.createElement("div");
+          product.className = "review-role";
+          product.textContent = `Review for ${review.productName}`;
+          details.append(name, product);
+          person.appendChild(details);
+          card.append(rating, quote, person);
+          column.appendChild(card);
+          grid.appendChild(column);
+        });
+      }
+      renderHomeProducts();
+      function onProductsLoaded() {
+        renderHomeProducts();
+      }
+      document.addEventListener("lume:categoriesReady", () => {
+        renderHomeProducts();
+      });
 
-  grid.replaceChildren();
-  if(!reviews.length){
-    const emptyColumn = document.createElement('div');
-    emptyColumn.className = 'col-12';
-    const emptyMessage = document.createElement('p');
-    emptyMessage.className = 'small text-center mb-0';
-    emptyMessage.textContent = 'No published customer reviews yet.';
-    emptyColumn.appendChild(emptyMessage);
-    grid.appendChild(emptyColumn);
-    return;
-  }
+      async function loadHomeBanners() {
+        if (!window.LumeAPI?.getBanners) return;
+        try {
+          const banner = (await window.LumeAPI.getBanners("hero"))[0];
+          if (!banner) return;
+          const image = document.getElementById("heroBannerImage");
+          const title = document.getElementById("heroBannerTitle");
+          const subtitle = document.getElementById("heroBannerSubtitle");
+          if (image && banner.image?.url) image.src = banner.image.url;
+          if (image && banner.title) image.alt = banner.title;
+          if (title && banner.title) title.textContent = banner.title;
+          if (subtitle && banner.subtitle)
+            subtitle.textContent = banner.subtitle;
+        } catch (error) {
+          console.error("[LUMÉ] Banner loading failed:", error);
+        }
+      }
+      loadHomeBanners();
 
-  reviews.forEach(review => {
-    const column = document.createElement('div');
-    column.className = 'col-md-6 col-lg-3';
-    const card = document.createElement('div');
-    card.className = 'review-card glass reveal in';
-    const rating = document.createElement('div');
-    rating.className = 'stars mb-2';
-    rating.innerHTML = starHTML(review.rating);
-    const quote = document.createElement('p');
-    quote.className = 'review-quote';
-    quote.textContent = `“${review.comment}”`;
-    const person = document.createElement('div');
-    person.className = 'review-person';
-    const details = document.createElement('div');
-    const name = document.createElement('div');
-    name.className = 'review-name';
-    name.textContent = review.name;
-    const product = document.createElement('div');
-    product.className = 'review-role';
-    product.textContent = `Review for ${review.productName}`;
-    details.append(name, product);
-    person.appendChild(details);
-    card.append(rating, quote, person);
-    column.appendChild(card);
-    grid.appendChild(column);
-  });
-}
-renderHomeProducts();
-function onProductsLoaded(){
-  renderHomeProducts();
-}
-document.addEventListener(
-  "lume:categoriesReady",
-  () => {
-    renderHomeProducts();
-  }
-);
+      document.getElementById("filterPills").addEventListener("click", (e) => {
+        const pill = e.target.closest(".filter-pill");
+        if (!pill) return;
+        document.querySelectorAll(".filter-pill").forEach((p) => {
+          p.classList.remove("active");
+          p.setAttribute("aria-pressed", "false");
+        });
+        pill.classList.add("active");
+        pill.setAttribute("aria-pressed", "true");
+        const f = pill.dataset.filter;
+        document
+          .querySelectorAll("#trendingGrid .product-fade")
+          .forEach((card) => {
+            card.classList.toggle(
+              "product-hide",
+              !(f === "all" || card.dataset.cat === f),
+            );
+          });
+      });
 
-async function loadHomeBanners(){
-  if(!window.LumeAPI?.getBanners) return;
-  try{
-    const banner = (await window.LumeAPI.getBanners('hero'))[0];
-    if(!banner) return;
-    const image = document.getElementById('heroBannerImage');
-    const title = document.getElementById('heroBannerTitle');
-    const subtitle = document.getElementById('heroBannerSubtitle');
-    if(image && banner.image?.url) image.src = banner.image.url;
-    if(image && banner.title) image.alt = banner.title;
-    if(title && banner.title) title.textContent = banner.title;
-    if(subtitle && banner.subtitle) subtitle.textContent = banner.subtitle;
-  }catch(error){ console.error('[LUMÉ] Banner loading failed:', error); }
-}
-loadHomeBanners();
+      const arrivalsRow = document.getElementById("arrivalsRow");
+      document.getElementById("arrivalsNext").addEventListener("click", () => {
+        arrivalsRow.scrollBy({ left: 280, behavior: "smooth" });
+      });
+      document.getElementById("arrivalsPrev").addEventListener("click", () => {
+        arrivalsRow.scrollBy({ left: -280, behavior: "smooth" });
+      });
 
-document.getElementById('filterPills').addEventListener('click', (e)=>{
-  const pill = e.target.closest('.filter-pill');
-  if(!pill) return;
-  document.querySelectorAll('.filter-pill').forEach(p=>{p.classList.remove('active');p.setAttribute('aria-pressed','false');});
-  pill.classList.add('active');
-  pill.setAttribute('aria-pressed','true');
-  const f = pill.dataset.filter;
-  document.querySelectorAll('#trendingGrid .product-fade').forEach(card=>{
-    card.classList.toggle('product-hide', !(f === 'all' || card.dataset.cat === f));
-  });
-});
+      function onWishlistChanged() {
+        document.querySelectorAll(".product-card").forEach((card) => {
+          const id = String(card.dataset.id);
+          const button = card.querySelector(".wish-btn");
+          const active = isWishlisted(id);
+          button?.classList.toggle("active", active);
+          button?.setAttribute("aria-pressed", String(active));
+          button?.querySelector("i")?.classList.toggle("bi-heart-fill", active);
+          button?.querySelector("i")?.classList.toggle("bi-heart", !active);
+        });
+      }
+    </script>
 
-const arrivalsRow = document.getElementById('arrivalsRow');
-document.getElementById('arrivalsNext').addEventListener('click', ()=>{
-  arrivalsRow.scrollBy({ left: 280, behavior:'smooth' });
-});
-document.getElementById('arrivalsPrev').addEventListener('click', ()=>{
-  arrivalsRow.scrollBy({ left: -280, behavior:'smooth' });
-});
-
-function onWishlistChanged(){
-  document.querySelectorAll('.product-card').forEach(card=>{
-    const id = String(card.dataset.id);
-    const button = card.querySelector('.wish-btn');
-    const active = isWishlisted(id);
-    button?.classList.toggle('active', active);
-    button?.setAttribute('aria-pressed', String(active));
-    button?.querySelector('i')?.classList.toggle('bi-heart-fill', active);
-    button?.querySelector('i')?.classList.toggle('bi-heart', !active);
-  });
-}
-</script>
-
-<!-- ============ WhatsApp Chat Widget ============ -->
-<a href="https://wa.me/918107595781?text=Hello%20LUMÉ%20Studio" 
-   target="_blank" 
-   rel="noopener noreferrer"
-   class="whatsapp-widget" 
-   id="whatsappWidget"
-   title="Chat with us on WhatsApp">
-  <i class="bi bi-whatsapp"></i>
-</a>
-</body>
+    <!-- ============ WhatsApp Chat Widget ============ -->
+    <a
+      href="https://wa.me/918107595781?text=Hello%20LUMÉ%20Studio"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-widget"
+      id="whatsappWidget"
+      title="Chat with us on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+  </body>
 </html>
